@@ -1,0 +1,382 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: url(image/background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.centerHeader {
+    text-align: center;
+
+}
+
+/* bloky */
+
+.bloky-all {
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.bloky-1-2 {
+    display: flex;
+    flex-direction: row;
+    grid-gap: 25px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.bloky-3-4 {
+    display: flex;
+    flex-direction: row;
+    grid-gap: 25px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-bottom: 25px;
+}
+
+.blok {
+    display: block;
+}
+
+/* čas */
+.menu-btn {
+    cursor: pointer;
+    background-color: #333;
+    color: #fff;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    width: 250px;
+}
+
+.menu-btn:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+#menu {
+    display: none;
+    width: 250px;
+    overflow-y: auto;
+    max-height: 200px;
+    z-index: 1;
+}
+
+#menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#menu ul li {
+    padding: 10px;
+    text-align: center;
+    background-color: rgba(128, 128, 128, 0.7);
+    border-bottom: 1px solid #ddd;
+}
+
+#menu ul li a {
+    text-decoration: none;
+    color: #333;
+}
+
+#menu ul li:hover {
+    background-color: RGB(128, 128, 128);
+}
+
+/* vyber obsluhy */
+
+.menu2-btn {
+    cursor: pointer;
+    background-color: #333;
+    color: #fff;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    width: 250px;
+}
+
+.menu2-btn:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+#menu2 {
+    display: none;
+    width: 250px;
+    overflow-y: auto;
+    max-height: 200px;
+    z-index: 1;
+}
+
+#menu2 ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#menu2 ul li {
+    padding: 10px;
+    text-align: center;
+    background-color: rgba(128, 128, 128, 0.7);
+    border-bottom: 1px solid #ddd;
+}
+
+#menu2 ul li a {
+    text-decoration: none;
+    color: #333;
+}
+
+#menu2 ul li:hover {
+    background-color: RGB(128, 128, 128);
+}
+
+/* vyber sluzby */
+
+.menu3-btn {
+    cursor: pointer;
+    background-color: #333;
+    color: #fff;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    width: 250px;
+}
+
+.menu3-btn:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+
+#menu3 {
+    display: none;
+    width: 250px;
+    overflow-y: auto;
+    max-height: 200px;
+    z-index: 1;
+}
+
+#menu3 ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#menu3 ul li {
+    padding: 10px;
+    text-align: center;
+    background-color: rgba(128, 128, 128, 0.7);
+    border-bottom: 1px solid #ddd;
+}
+
+#menu3 ul li a {
+    text-decoration: none;
+    color: #333;
+}
+
+#menu3 ul li:hover {
+    background-color: rgb(128, 128, 128);
+}
+
+/* Vyber data */ 
+
+.menu4-btn {
+    cursor: pointer;
+    background-color: #333;
+    color: #fff;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    width: 250px;
+}
+
+.menu4-btn:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+
+#menu4 {
+    display: none;
+    width: 250px;
+    overflow-y: auto;
+    max-height: 200px;
+    z-index: 1;
+}
+
+#menu4 ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#menu4 ul li {
+    padding: 10px;
+    text-align: center;
+    background-color: rgba(128, 128, 128, 0.7);
+    border-bottom: 1px solid #ddd;
+}
+
+#menu4 ul li a {
+    text-decoration: none;
+    color: #333;
+}
+
+#menu4 ul li:hover {
+    background-color: rgb(128, 128, 128);
+}
+
+@media screen and (max-width: 780px) {
+    .bloky-1-2 {
+        flex-direction: column;
+        grid-gap: 0px;
+    }
+
+    .bloky-all {
+        padding-left: 150px;
+        padding-right: 150px;
+    }
+
+    .confirm {
+        margin-left: 144px;
+        margin-right: 147px;
+    }
+
+    body{
+        background-image: none;
+        background-color: white;
+    }
+}
+
+.map {
+    display: flex;
+}
+
+.open-hours {
+    padding-right: 134px;
+    padding-left: 134px;
+    display: flex;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.column-oph {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    font-size: small;
+}
+
+.row-oph {
+    display: flex;
+    flex-direction: row;
+    grid-gap: 2rem;
+}
+
+footer {
+    background-color: #333;
+    height: 50px;
+    width: 100%;
+    text-align: center;
+    color: white;
+}
+
+
+
+.confirm {
+    display: flex;
+    margin-left: 149px;
+    margin-right: 148.29px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.buttonIn {
+    padding: 10px 20px;
+    background-color: #333;
+    opacity: 0.8;
+    color: #fff;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+
+
+footer p {
+    text-align: center;
+    padding-left: 10px;
+}
+
+footer a {
+    float: right;
+    padding-right: 10px;
+    color: white;
+    font-weight: 200;
+    font-style: normal;
+    text-decoration: none;
+}
+
+.background {
+    background-color: white;
+}
+
+/* Kalendář */
+.calendar {
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+.month-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f0f0f0;
+    padding: 10px;
+}
+
+.month-title {
+    font-size: 20px;
+}
+
+.arrow {
+    cursor: pointer;
+    font-size: 24px;
+}
+
+.days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+}
+
+.day {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.saturday, .sunday {
+    background-color: #f0f0f0;
+    font-weight: bold;
+}
+
+.today {
+    background-color: #c4e7ff;
+}
+
+.selected {
+    background-color: #a3d8ff;
+}
+
+.weekend {
+    color: red;
+}

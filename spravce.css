@@ -1,0 +1,40 @@
+.header {
+    display: flex;
+    width: 100%;
+    height: 100px;
+    justify-content: end;
+}
+
+.logout {
+    width: fit-content;
+    height: 50px;
+    background-color: #333;
+    opacity: 0.8;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.reservations {
+    display: flex;
+    flex-direction: row;
+    grid-gap: 1rem;
+}
+
+.res-row {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    width: 33%;
+}
+
+@media screen and (max-width: 780px) {
+    .reservations {
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .res-row {
+        width: 80%;
+    }
+}

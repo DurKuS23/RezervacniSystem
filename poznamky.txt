@@ -1,0 +1,10 @@
+Problém 1.
+Kontrola prázdných polí v register.php
+Řešení // Problém 1
+
+Problém 2.
+Alert se vypisoval vždy po najetí stránky, jelikož php není jazyk který jde postupně ale "náhodně" ?
+Řešení // Problém 2 
+
+
+// vyřešit tlačítka register / login page = stejná barva jak na rezervace.html
