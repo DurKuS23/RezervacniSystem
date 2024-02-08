@@ -12,31 +12,8 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $("#datepicker").datepicker({
-                minDate: new Date(),
-                maxDate: new Date(new Date().getFullYear(), 11, 31),
-                onSelect: function (dateText) {
-                    $("#zvoleneDatum").text("Datum:" + dateText);
-                    $("#datepicker").hide();
-                },
-                beforeShowDay: function (date) {
-                    var day = date.getDay();
-                    var weekend = (day == 0 || day == 6);
-                    return [!weekend, weekend ? "weekend" : "", weekend ? "Nedostupné" : "Kliknutelné"];
-                }
-            });
-        });
-
-        function toggleCalendar() {
-            $("#datepicker").toggle();
-        }
-    </script>
 </head>
-
 <body>
-
     <div class="pozice">
         <div class="topnav" id="myTopnav">
             <a href="index.html">Úvodní stránka</a>
@@ -114,7 +91,7 @@
                 <br>
                 <div class="blok">
                     <div class="menu4-btn" onclick="toggleCalendar()" id="zvoleneDatum"> Datum </div>
-                    <div id="datepicker" style="display: none;"></div>
+                    <div id="menu4" style="display: none;"></div>
                 </div>
 
             </div>

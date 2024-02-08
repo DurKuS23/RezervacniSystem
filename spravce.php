@@ -7,13 +7,8 @@ if (!isset($_SESSION["logged_in"]) || $_SESSION["logged_in"] !== true) {
 }
 
 if (isset($_POST["logout"])) {
-    // Zrušení všech session dat
     session_unset();
-
-    // Zničení session
     session_destroy();
-
-    // Přesměrování na stránku přihlášení nebo jinou vhodnou stránku
     header("Location: index.html");
     exit();
 }
@@ -23,10 +18,14 @@ $username = "root";
 $password = "";
 $dbname = "rezervace";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+if(isset($_GET['delete_id'])) {
+    $delete_id = $_GET['delete_id'];
+    $delete_query = "DELETE FROM reservations WHERE reservation_id = $delete_id";
+    if ($conn->query($delete_query) === TRUE) {
+        echo "Record deleted successfully";
+    } else {
+        echo "Error deleting record: " . $conn->error;
+    }
 }
 
 $query = "SELECT r.reservation_id, o.jmeno AS operator_jmeno, r.datum_sluzby, r.cas_sluzby, s.typ_sluzby
@@ -80,6 +79,7 @@ $result = $conn->query($query);
                 echo "<p>Datum: " . $row["datum_sluzby"] . "</p>";
                 echo "<p>Čas: " . $row["cas_sluzby"] . "</p>";
                 echo "<p>Služba: " . $row["typ_sluzby"] . "</p>";
+                echo "<a href='?delete_id=" . $row['reservation_id'] . "'>Smazat rezervaci</a>";
                 echo "</div>";
             }
         } else {

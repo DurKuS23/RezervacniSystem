@@ -63,3 +63,26 @@ function submitForm() {
     document.getElementById("selectedDate").value = selectedDate;
 }
 
+function setupDatepicker() {
+    $("#datepicker").datepicker({
+        minDate: new Date(),
+        maxDate: new Date(new Date().getFullYear(), 11, 31),
+        onSelect: function (dateText) {
+            $("#zvoleneDatum").text("Datum:" + dateText);
+            $("#datepicker").hide();
+        },
+        beforeShowDay: function (date) {
+            var day = date.getDay();
+            var weekend = (day == 0 || day == 6);
+            return [!weekend, weekend ? "weekend" : "", weekend ? "Nedostupné" : "Kliknutelné"];
+        }
+    });
+}
+
+$(document).ready(function () {
+    setupDatepicker();
+});
+
+function toggleCalendar() {
+    $("#datepicker").toggle();
+}
