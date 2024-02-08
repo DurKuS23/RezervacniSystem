@@ -12,7 +12,6 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Kontrola, zda je uživatel již přihlášený
 if (isset($_SESSION["logged_in"]) && $_SESSION["logged_in"] === true) {
     header("Location: spravce.php");
     exit();
@@ -44,12 +43,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $error = "Uživatel s tímto e-mailem neexistuje";
     }
-
-    // Uzavření připraveného dotazu
     $stmt->close();
 }
-
-// Uzavření připojení k databázi
 $conn->close();
 ?>
 

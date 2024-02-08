@@ -9,6 +9,7 @@ if (!isset($_SESSION["logged_in"]) || $_SESSION["logged_in"] !== true) {
 if (isset($_POST["logout"])) {
     session_unset();
     session_destroy();
+
     header("Location: index.html");
     exit();
 }
@@ -18,14 +19,10 @@ $username = "root";
 $password = "";
 $dbname = "rezervace";
 
-if(isset($_GET['delete_id'])) {
-    $delete_id = $_GET['delete_id'];
-    $delete_query = "DELETE FROM reservations WHERE reservation_id = $delete_id";
-    if ($conn->query($delete_query) === TRUE) {
-        echo "Record deleted successfully";
-    } else {
-        echo "Error deleting record: " . $conn->error;
-    }
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
 
 $query = "SELECT r.reservation_id, o.jmeno AS operator_jmeno, r.datum_sluzby, r.cas_sluzby, s.typ_sluzby
@@ -34,6 +31,17 @@ $query = "SELECT r.reservation_id, o.jmeno AS operator_jmeno, r.datum_sluzby, r.
           LEFT JOIN sluzba s ON r.sluzba_id = s.id";
 
 $result = $conn->query($query);
+?>
+
+<?php 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = $_POST["email"];
+    $heslo = $_POST["heslo"];
+  
+    echo "Přihlášení úspěšné pro email: " . $email;
+  } else {
+    echo "Přihlášení selhalo. Nebyly přijaty žádné údaje.";
+  }
 ?>
 
 <!DOCTYPE html>
@@ -46,9 +54,10 @@ $result = $conn->query($query);
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="spravce.css">
     <script src="javascript.js"></script>
+    <script src="spravce.js"></script>
 </head>
 
 <body>
@@ -69,26 +78,39 @@ $result = $conn->query($query);
         </form>
     </div>
 
-    <div class="reservations">
+
+    <div>
         <?php
         if ($result->num_rows > 0) {
+            $counter = 0;
+            echo "<div class='reservations'>";
             while ($row = $result->fetch_assoc()) {
+                if ($counter % 3 == 0) { 
+                    echo "</div>"; 
+                    echo "<div class='reservations'>";
+                }
                 echo "<div class='res-row'>";
+                echo "<div class='cont-buttons'>";
+                echo "<button class='edit-button' onclick='EditRes()'>Upravit</button>";
+                echo "<button class='delete-button' onclick='DelRes()'>Smazat</button>";
+                echo "</div>"; 
                 echo "<p class='bold-text'>Reservation ID: " . $row["reservation_id"] . "</p>";
                 echo "<p>Obsluha: " . $row["operator_jmeno"] . "</p>";
                 echo "<p>Datum: " . $row["datum_sluzby"] . "</p>";
                 echo "<p>Čas: " . $row["cas_sluzby"] . "</p>";
                 echo "<p>Služba: " . $row["typ_sluzby"] . "</p>";
-                echo "<a href='?delete_id=" . $row['reservation_id'] . "'>Smazat rezervaci</a>";
                 echo "</div>";
+                $counter++;
             }
+            echo "</div>";
         } else {
             echo "<p>No reservations found.</p>";
         }
-        
+
         $result->free_result();
         $conn->close();
         ?>
+
     </div>
 </body>
 

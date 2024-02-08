@@ -20,3 +20,12 @@ function loadReservations() {
     xhr.send();
 }
 window.onload = loadReservations;
+
+
+function EditRes(){
+    alert ("Zmačkl si edit ! ");
+}
+
+function DelRes(){
+    alert ("Zmačkl si del ! ");
+}
