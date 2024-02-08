@@ -23,6 +23,7 @@ body {
     padding-top: 10px;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .bloky-1-2 {
@@ -204,31 +205,9 @@ body {
 #menu4 {
     display: none;
     width: 250px;
-    overflow-y: auto;
-    max-height: 200px;
+    overflow-y:auto;
+    max-height: 250px;
     z-index: 1;
-}
-
-#menu4 ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-#menu4 ul li {
-    padding: 10px;
-    text-align: center;
-    background-color: rgba(128, 128, 128, 0.7);
-    border-bottom: 1px solid #ddd;
-}
-
-#menu4 ul li a {
-    text-decoration: none;
-    color: #333;
-}
-
-#menu4 ul li:hover {
-    background-color: rgb(128, 128, 128);
 }
 
 @media screen and (max-width: 780px) {

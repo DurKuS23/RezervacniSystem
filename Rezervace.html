@@ -12,7 +12,28 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#menu4").datepicker({
+                minDate: new Date(),
+                maxDate: new Date(new Date().getFullYear(), 11, 31),
+                onSelect: function(dateText) {
+                    $("#zvoleneDatum").text("Datum:" + dateText);
+                    $("#menu4").hide();
+                },
+                beforeShowDay: function(date) {
+                    var day = date.getDay();
+                    return [(day >= 1 && day <= 5), "", ""];
+                }
+            });
+        });
+
+        function toggleCalendar() {
+            $("#menu4").toggle();
+        }
+    </script>
 </head>
+
 <body>
     <div class="pozice">
         <div class="topnav" id="myTopnav">
@@ -51,7 +72,7 @@
 
                 <br>
                 <div class="blok">
-                    <div class="menu2-btn" onclick="toggleMenuCService()" id="ZvolenaObsluha">Preferovaná obsluhu</div>
+                    <div class="menu2-btn" onclick="toggleMenuCService()" id="ZvolenaObsluha">Preferovaná obsluha</div>
                     <div id="menu2">
                         <ul>
                             <li onclick="selectItemCService('Je mi to jedno')"><a href="#">Je mi to jedno</a></li>
@@ -73,8 +94,7 @@
                         <ul>
                             <li onclick="selectItemService('Klasický střih')"><a href="#">Klasický střih</a></li>
                             <li onclick="selectItemService('Střih strojkem')"><a href="#">Střih strojkem</a></li>
-                            <li onclick="selectItemService('Klasický střih a úprava vousů hot towel')"><a
-                                    href="#">Klasický
+                            <li onclick="selectItemService('Klasický střih a úprava vousů hot towel')"><a href="#">Klasický
                                     střih a
                                     úprava vousů hot towel</a></li>
                             <li onclick="selectItemService('Úprava vousů pouze strojkem')"><a href="#">Úprava vousů
@@ -112,10 +132,7 @@
     </div>
 
     <div class="map">
-        <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2605.732653578486!2d15.888706476887588!3d49.22459707486512!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470d423e5579f153%3A0x882e29f2a26985b8!2zU3TFmWVkbsOtIHByxa9teXNsb3bDoSDFoWtvbGEgVMWZZWLDrcSN!5e0!3m2!1scs!2scz!4v1699739297062!5m2!1scs!2scz"
-            width="600px" height="400px" style="border:0;" allowfullscreen="" loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2605.732653578486!2d15.888706476887588!3d49.22459707486512!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470d423e5579f153%3A0x882e29f2a26985b8!2zU3TFmWVkbsOtIHByxa9teXNsb3bDoSDFoWtvbGEgVMWZZWLDrcSN!5e0!3m2!1scs!2scz!4v1699739297062!5m2!1scs!2scz" width="600px" height="400px" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
 
     <div class="background">

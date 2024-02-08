@@ -47,6 +47,7 @@ function selectDateService(item) {
 }
 
 function submitForm() {
+
     var selectedTimeElement = document.getElementById("ZvolenyCas");
     var selectedCServiceElement = document.getElementById("ZvolenaObsluha");
     var selectedServiceElement = document.getElementById("ZvolenaSluzba");
@@ -55,34 +56,16 @@ function submitForm() {
     var selectedTime = selectedTimeElement.textContent.replace("Zvolený čas:", "").trim();
     var selectedService = selectedServiceElement.textContent.replace("Zvolená služba:", "").trim();
     var selectedCService = selectedCServiceElement.textContent.replace("Zvolená obsluha:", "").trim();
-    var selectedDate = selectedDateElement.textContent.replace("Datum:","").trim();
+    var selectedDate = selectedDateElement.textContent.replace("Datum:", "").trim();
 
-    document.getElementById("selectedTime").value = selectedTime;
-    document.getElementById("selectedCService").value = selectedCService;
-    document.getElementById("selectedService").value = selectedService;
-    document.getElementById("selectedDate").value = selectedDate;
+    if (selectedTime !== "Vyberte čas" && selectedService !== "Služba" && selectedCService !== "Preferovaná obsluha" && selectedDate !== "Datum") {
+        document.getElementById("selectedTime").value = selectedTime;
+        document.getElementById("selectedCService").value = selectedCService;
+        document.getElementById("selectedService").value = selectedService;
+        document.getElementById("selectedDate").value = selectedDate;
+        alert("Vaše rezervace byla úspěšná !");
+    } else {
+        alert("Prosím vyplňte všechna pole formuláře.");
+    }
 }
 
-function setupDatepicker() {
-    $("#datepicker").datepicker({
-        minDate: new Date(),
-        maxDate: new Date(new Date().getFullYear(), 11, 31),
-        onSelect: function (dateText) {
-            $("#zvoleneDatum").text("Datum:" + dateText);
-            $("#datepicker").hide();
-        },
-        beforeShowDay: function (date) {
-            var day = date.getDay();
-            var weekend = (day == 0 || day == 6);
-            return [!weekend, weekend ? "weekend" : "", weekend ? "Nedostupné" : "Kliknutelné"];
-        }
-    });
-}
-
-$(document).ready(function () {
-    setupDatepicker();
-});
-
-function toggleCalendar() {
-    $("#datepicker").toggle();
-}

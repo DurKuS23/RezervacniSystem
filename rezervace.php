@@ -1,13 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="rezervace.js"></script>
 </head>
 
 <body>
@@ -21,7 +18,6 @@
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     } else {
-        echo 'Pripojeno' . "<br>";
         $operatorName = $_POST['selectedCService'];
         $serviceName = $_POST['selectedService'];
         $serviceDate = $_POST['selectedDate'];
@@ -45,18 +41,16 @@
                       VALUES ('$operatorId', '$serviceId', '$serviceTime', '$formattedDate')";
 
             if ($conn->query($sqlInsert) === TRUE) {
-                echo "Nový záznam byl úspěšně vložen.";
-            } else {
-                echo "Chyba při vkládání záznamu: " . $conn->error;
+                header("Location: index.html");
+                exit();
             }
         } else {
+            header("Location: Rezervace.html");
+            exit();
             echo "Operátor s jménem $operatorName nebyl nalezen nebo služba s názvem $serviceName nebyla nalezena.";
         }
     }
     ?>
-
-
-
 </body>
 
 </html>
