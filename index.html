@@ -11,14 +11,15 @@
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="indexscript.js"></script>
 </head>
 
 <body>
     <div class="pozice">
         <div class="topnav" id="myTopnav">
             <a href="index.html">Úvodní stránka</a>
-            <a href="">Přihlášení</a>
-            <a href="">Registrace</a>
+            <a href="" onclick="Login()">Přihlášení</a>
+            <a href="" onclick="Register()">Registrace</a>
             <a href="Rezervace.html">Rezervace</a>
             <a href="javascript:void(0);" class="icon" onclick="myFunction()">
                 <i class="fa fa-bars"></i> </a>
@@ -34,19 +35,4 @@
         <p> @Daniel Nováček 2023 <a href="spravcelogin.php">Správce </a></p>
     </footer>
 </body>
-
-<script>
-    function zobrazDatum() {
-        var vybraneDatum = document.getElementById("datum").value;
-        document.getElementById("zobrazeneDatum").textContent = "Vybrané datum: " + vybraneDatum;
-    }
-    document.getElementById("datum").addEventListener("change", zobrazDatum);
-
-    function zobrazCas() {
-        var vybranycas = document.getElementById("cas").value;
-        document.getElementById("zobrazenycas").textContent = "Vybraný čas: " + vybranycas;
-    }
-    document.getElementById("cas").addEventListener("change", zobrazCas);
-</script>
-
 </html>

@@ -14,7 +14,7 @@
     $Email = $_POST['email'];
     $Password = $_POST['heslo'];
 
-    $Email = mysqli_real_escape_string($conn, $Email); // ochrana před SQL injection
+    $Email = mysqli_real_escape_string($conn, $Email);
 
     $sql = "SELECT Email, Heslo FROM uzivatele WHERE Email = '$Email'";
     $result = $conn->query($sql);
@@ -33,11 +33,4 @@
     }
 
     $conn->close();
-    /*
-    if (password_verify($Password, PASSWORD_DEFAULT) == $Password) {
-        echo 'Přihlášen'; // odešlu uživatele na index.html
-    } else {
-        echo 'nepřihlášen'; // nechám ho znovu zadat heslo, 3x špatně - timeout
-    }
-    */
     ?>

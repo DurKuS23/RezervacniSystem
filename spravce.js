@@ -21,11 +21,29 @@ function loadReservations() {
 }
 window.onload = loadReservations;
 
-
-function EditRes(){
-    alert ("Zmačkl si edit ! ");
+/*
+function deleteReservation(button) {
+    var reservationId = button.getAttribute('data-id');
+    if (confirm("Opravdu chcete smazat tuto rezervaci?")) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "spravce.php", true);
+        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                alert(xhr.responseText);
+                location.reload();
+            }
+        };
+        xhr.send("reservation_id=" + reservationId);
+    }
 }
+*/
 
-function DelRes(){
-    alert ("Zmačkl si del ! ");
+function showConfirmation() {
+    var response = confirm("Opravdu chcete smazat rezervaci ?");
+    if (response == true) {
+        window.location.href = "spravce.php?response=ano";
+    } else {
+        window.location.href = "spravce.php?response=ne";
+    }
 }

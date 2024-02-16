@@ -33,20 +33,27 @@ $query = "SELECT r.reservation_id, o.jmeno AS operator_jmeno, r.datum_sluzby, r.
 $result = $conn->query($query);
 ?>
 
-<?php 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST["email"];
-    $heslo = $_POST["heslo"];
-  
-    echo "Přihlášení úspěšné pro email: " . $email;
-  } else {
-    echo "Přihlášení selhalo. Nebyly přijaty žádné údaje.";
-  }
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "rezervace";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+function click($btn)
+{
+    $reservationId = $btn + 1;
+    $sql = "DELETE FROM reservations WHERE reservation_id = '$reservationId'";
+}
 ?>
 
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -85,15 +92,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $counter = 0;
             echo "<div class='reservations'>";
             while ($row = $result->fetch_assoc()) {
-                if ($counter % 3 == 0) { 
-                    echo "</div>"; 
+                if ($counter % 3 == 0) {
+                    echo "</div>";
                     echo "<div class='reservations'>";
                 }
                 echo "<div class='res-row'>";
                 echo "<div class='cont-buttons'>";
-                echo "<button class='edit-button' onclick='EditRes()'>Upravit</button>";
-                echo "<button class='delete-button' onclick='DelRes()'>Smazat</button>";
-                echo "</div>"; 
+                echo "<button class='delete-button' onclick='window.click($counter);'>Smazat</button>";
+                echo "</div>";
                 echo "<p class='bold-text'>Reservation ID: " . $row["reservation_id"] . "</p>";
                 echo "<p>Obsluha: " . $row["operator_jmeno"] . "</p>";
                 echo "<p>Datum: " . $row["datum_sluzby"] . "</p>";
@@ -106,6 +112,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             echo "<p>No reservations found.</p>";
         }
+
+
 
         $result->free_result();
         $conn->close();
