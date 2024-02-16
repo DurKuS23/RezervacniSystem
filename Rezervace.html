@@ -13,15 +13,15 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             $("#menu4").datepicker({
                 minDate: new Date(),
                 maxDate: new Date(new Date().getFullYear(), 11, 31),
-                onSelect: function(dateText) {
+                onSelect: function (dateText) {
                     $("#zvoleneDatum").text("Datum:" + dateText);
                     $("#menu4").hide();
                 },
-                beforeShowDay: function(date) {
+                beforeShowDay: function (date) {
                     var day = date.getDay();
                     return [(day >= 1 && day <= 5), "", ""];
                 }
@@ -37,7 +37,7 @@
 <body>
     <div class="pozice">
         <div class="topnav" id="myTopnav">
-            <a href="index.html">Úvodní stránka</a>
+            <a href="index.php">Úvodní stránka</a>
             <a href="login.html">Přihlášení</a>
             <a href="register.html">Registrace</a>
             <a href="javascript:void(0);" class="icon" onclick="myFunction()">
@@ -94,7 +94,8 @@
                         <ul>
                             <li onclick="selectItemService('Klasický střih')"><a href="#">Klasický střih</a></li>
                             <li onclick="selectItemService('Střih strojkem')"><a href="#">Střih strojkem</a></li>
-                            <li onclick="selectItemService('Klasický střih a úprava vousů hot towel')"><a href="#">Klasický
+                            <li onclick="selectItemService('Klasický střih a úprava vousů hot towel')"><a
+                                    href="#">Klasický
                                     střih a
                                     úprava vousů hot towel</a></li>
                             <li onclick="selectItemService('Úprava vousů pouze strojkem')"><a href="#">Úprava vousů
@@ -132,55 +133,56 @@
     </div>
 
     <div class="map">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2605.732653578486!2d15.888706476887588!3d49.22459707486512!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470d423e5579f153%3A0x882e29f2a26985b8!2zU3TFmWVkbsOtIHByxa9teXNsb3bDoSDFoWtvbGEgVMWZZWLDrcSN!5e0!3m2!1scs!2scz!4v1699739297062!5m2!1scs!2scz" width="600px" height="400px" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2605.732653578486!2d15.888706476887588!3d49.22459707486512!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470d423e5579f153%3A0x882e29f2a26985b8!2zU3TFmWVkbsOtIHByxa9teXNsb3bDoSDFoWtvbGEgVMWZZWLDrcSN!5e0!3m2!1scs!2scz!4v1699739297062!5m2!1scs!2scz"
+            width="600px" height="400px" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
 
     <div class="background">
-        <div class="open-hours">
-            <div class="row-oph">
-                <div class="column-oph">
+        <div class="central-gap">
+            <div class="left-s">
+
+                <div>
                     <p class="bold"> SPŠT </p>
                     <p> Manž. Curieových 734 </p>
                     <p> 674 01 Třebíč 1</p>
                     <p> Telefon : 645 213 564 </p>
                 </div>
-                <div class="column-oph">
-                    <div class="row-oph">
-                        <p class="bold"> Pondělí
-                        <p> 7:00 10:00 </p>
-                        </p>
-                    </div>
-                    <div class="row-oph">
-                        <p class="bold"> Útery
-                        <p> 7:00 10:00 </p>
-                        </p>
-                    </div>
-                    <div class="row-oph">
-                        <p class="bold"> Středa
-                        <p> 7:00 10:00 </p>
-                        </p>
-                    </div>
-                    <div class="row-oph">
-                        <p class="bold"> Čtvrtek
-                        <p> 7:00 10:00 </p>
-                        </p>
-                    </div>
-                    <div class="row-oph">
-                        <p class="bold"> Pátek
-                        <p> 7:00 10:00 </p>
-                        </p>
-                    </div>
-                    <div class="row-oph">
-                        <p class="bold"> Sobota
-                        <p> --- --- </p>
-                        </p>
-                    </div>
-                    <div class="row-oph">
-                        <p class="bold"> Neděle
-                        <p> --- --- </p>
-                        </p>
-                    </div>
+
+            </div>
+
+            <div class="right-s">
+
+                <div class="row-oph">
+                    <p class="bold"> Pondělí </p>
+                    <p class="right-si"> 7:00 - 10:00 </p>
                 </div>
+                <div class="row-oph">
+                    <p class="bold"> Útery </p>
+                    <p class="right-si"> 7:00 - 10:00 </p>
+                </div>
+                <div class="row-oph">
+                    <p class="bold"> Středa </p>
+                    <p class="right-si"> 7:00 - 10:00 </p>
+                </div>
+                <div class="row-oph">
+                    <p class="bold"> Čtvrtek </p>
+                    <p class="right-si"> 7:00 - 10:00 </p>
+                </div>
+                <div class="row-oph">
+                    <p class="bold"> Pátek </p>
+                    <p class="right-si"> 7:00 - 10:00 </p>
+                </div>
+                <div class="row-oph">
+                    <p class="bold"> Sobota </p>
+                    <p class="right-si"> --- --- </p>
+                </div>
+                <div class="row-oph">
+                    <p class="bold"> Neděle </p>
+                    <p class="right-si"> --- --- </p>
+                </div>
+
             </div>
         </div>
     </div>

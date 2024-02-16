@@ -185,7 +185,7 @@ body {
     background-color: rgb(128, 128, 128);
 }
 
-/* Vyber data */ 
+/* Vyber data */
 
 .menu4-btn {
     cursor: pointer;
@@ -205,7 +205,7 @@ body {
 #menu4 {
     display: none;
     width: 250px;
-    overflow-y:auto;
+    overflow-y: auto;
     max-height: 250px;
     z-index: 1;
 }
@@ -231,7 +231,7 @@ body {
         margin-right: 147px;
     }
 
-    body{
+    body {
         background-image: none;
         background-color: white;
     }
@@ -242,13 +242,36 @@ body {
 }
 
 .open-hours {
-    padding-right: 134px;
-    padding-left: 134px;
     display: flex;
 }
 
-.bold {
-    font-weight: bold;
+.central-gap {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    grid-gap: 4rem;
+}
+
+.left-s {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+}
+
+.right-s {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+}
+
+.row-oph {
+    display: flex;
+    flex-direction: row;
+    grid-gap: 1rem;
+}
+
+.right-si {
+    display: flex;
 }
 
 .column-oph {
@@ -258,10 +281,8 @@ body {
     font-size: small;
 }
 
-.row-oph {
-    display: flex;
-    flex-direction: row;
-    grid-gap: 2rem;
+.bold {
+    font-weight: bold;
 }
 
 footer {
@@ -310,6 +331,8 @@ footer a {
 }
 
 .background {
+    max-width: 600px;
+    width: 600px;
     background-color: white;
 }
 
@@ -348,7 +371,8 @@ footer a {
     text-align: center;
 }
 
-.saturday, .sunday {
+.saturday,
+.sunday {
     background-color: #f0f0f0;
     font-weight: bold;
 }

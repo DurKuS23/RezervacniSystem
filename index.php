@@ -31,8 +31,14 @@
         </div>
     </div>
 
+    <div class="headerH1">
+        <h3> Třadiční holičství </h3>
+    </div>
+
+
     <footer>
         <p> @Daniel Nováček 2023 <a href="spravcelogin.php">Správce </a></p>
     </footer>
 </body>
+
 </html>
