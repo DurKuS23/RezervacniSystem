@@ -16,13 +16,11 @@ $Name = $_POST['jmeno'];
 $Surname = $_POST['prijmeni'];
 $Email = $_POST['email'];
 $Password = $_POST['heslo'];
-
 $hashHesla = hash("sha256", $Password);
 
 
 function kontrolaNeprazdnychDat($data)
 {
-    // prochazeni vsech dat v poli
     foreach ($data as $key => $value) {
         if (empty(trim($value))) {
             return false;
@@ -31,28 +29,36 @@ function kontrolaNeprazdnychDat($data)
     return true;
 }
 
-// Problém 1,2
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['odeslat'])) {
 
-        $dataKUlozeni = array(
-            'Jmeno' => $Name,
-            'Prijemni' => $Surname,
-            'Email' => $Email,
-            'Heslo' => $hashHesla
-        );
+        $query = "SELECT COUNT(*) FROM uzivatele WHERE Email = ?";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("s", $Email);
+        $stmt->execute();
+        $stmt->bind_result($count);
+        $stmt->fetch();
+        $stmt->close();
 
-        if (kontrolaNeprazdnychDat($dataKUlozeni)) {
-            $sql = "INSERT INTO uzivatele (Jmeno,Prijmeni,Email,Heslo) VALUES ('$Name', '$Surname','$Email','$hashHesla')";
-            $conn->query($sql);
+        if ($count > 0) {
+            echo '<script>alert("Tato emailová adresa je již registrovaná.");</script>';
+            header("Location: register.html");
         } else {
-            echo '<script>alert("Chyba: Některá pole jsou prázdná nebo obsahují pouze mezery.")</script>';
+            $dataKUlozeni = array(
+                'Jmeno' => $Name,
+                'Prijemni' => $Surname,
+                'Email' => $Email,
+                'Heslo' => $hashHesla
+            );
+
+            if (kontrolaNeprazdnychDat($dataKUlozeni)) {
+                $sql = "INSERT INTO uzivatele (Jmeno,Prijmeni,Email,Heslo) VALUES ('$Name', '$Surname','$Email','$hashHesla')";
+                $conn->query($sql);
+            } else {
+                echo '<script>alert("Chyba: Některá pole jsou prázdná nebo obsahují pouze mezery.")</script>';
+            }
         }
     }
 }
-
-
-
-
 $conn->close();
 ?>
