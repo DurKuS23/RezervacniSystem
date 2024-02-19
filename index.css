@@ -40,3 +40,43 @@ footer {
 .cont-1 {
     display: flex;
 }
+
+.header {
+    color: #fff;
+    text-align: center;
+    display: flex;
+    width: 100%;
+    height: 100px;
+    justify-content: end;
+}
+
+
+.logout {
+    width: fit-content;
+    height: 50px;
+    padding-right: 2rem;
+    background-color: #333;
+    opacity: 0.8;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+
+button {
+    background-color: #007BFF;
+    color: #fff;
+    padding: 10px 20px; 
+    max-width: 150px;
+    border: none;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #0056b3;
+}
+
+@media screen and (max-width: 780px) {
+    .header {
+        justify-content: center;
+    }
+}

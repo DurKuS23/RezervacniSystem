@@ -1,4 +1,5 @@
     <?php
+
     $servername = "localhost";
     $username = "root";
     $password = '';
@@ -20,15 +21,38 @@
 
     $hashHesla = hash("sha256", $Password);
 
+    $Logged;
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
         if ($hashHesla == $row['Heslo']) {
-            echo "Přihlášení úspěšné!";
+            session_start();
+            $Logged = 0;
+            $_SESSION['user_email'] = $Email;
+            echo "<script> alert('Úspěšně přihlášen') </script>";
         } else {
-            echo "Chybné heslo.";
+            $Logged = 1;
+            echo "<script> alert('Chybné heslo.') </script>";
         }
     } else {
-        echo "Uživatel s tímto e-mailem neexistuje.";
+        $Logged = 2;
+        echo "<script> alert('Uživatel s tímto e-mailem neexistuje.') </script>";
+    }
+
+
+    switch ($Logged) {
+        case 0: {
+                echo "<script>window.opener.location.reload();</script>";
+                echo "<script>window.close();</script>";
+            }
+            break;
+        case 1: {
+                echo "<script> window.location.href = 'login.html'; </script>";
+            }
+            break;
+        case 2: {
+                echo "<script> window.location.href = 'login.html'; </script>";
+            }
+            break;
     }
 
     $conn->close();

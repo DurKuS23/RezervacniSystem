@@ -44,7 +44,7 @@ function selectDateService(item) {
     menu.style.display = 'none';
     var zvolenyItemService = document.getElementById('reservationDate');
     zvolenyItemService.textContent = "Zvolené datum: " + item;
-}
+}-
 
 function submitForm() {
 
@@ -58,14 +58,19 @@ function submitForm() {
     var selectedCService = selectedCServiceElement.textContent.replace("Zvolená obsluha:", "").trim();
     var selectedDate = selectedDateElement.textContent.replace("Datum:", "").trim();
 
-    if (selectedTime !== "Vyberte čas" && selectedService !== "Služba" && selectedCService !== "Preferovaná obsluha" && selectedDate !== "Datum") {
-        document.getElementById("selectedTime").value = selectedTime;
-        document.getElementById("selectedCService").value = selectedCService;
-        document.getElementById("selectedService").value = selectedService;
-        document.getElementById("selectedDate").value = selectedDate;
-        alert("Vaše rezervace byla úspěšná !");
+    if (isLoggedIn) {
+        if (selectedTime !== "Vyberte čas" && selectedService !== "Služba" && selectedCService !== "Preferovaná obsluha" && selectedDate !== "Datum") {
+            document.getElementById("selectedTime").value = selectedTime;
+            document.getElementById("selectedCService").value = selectedCService;
+            document.getElementById("selectedService").value = selectedService;
+            document.getElementById("selectedDate").value = selectedDate;
+            alert("Vaše rezervace byla úspěšná !");
+        } else {
+            alert("Prosím vyplňte všechna pole formuláře.");
+        }
     } else {
-        alert("Prosím vyplňte všechna pole formuláře.");
+        alert("Pro provedení rezervace se prosím přihlaste.");
     }
 }
+
 

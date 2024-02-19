@@ -4,53 +4,215 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="rezervace.css">
+    <link rel="stylesheet" href="navbar.css">
     <script src="rezervace.js"></script>
+    <script src="javascript.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#menu4").datepicker({
+                minDate: new Date(),
+                maxDate: new Date(new Date().getFullYear(), 11, 31),
+                onSelect: function(dateText) {
+                    $("#zvoleneDatum").text("Datum:" + dateText);
+                    $("#menu4").hide();
+                },
+                beforeShowDay: function(date) {
+                    var day = date.getDay();
+                    return [(day >= 1 && day <= 5), "", ""];
+                }
+            });
+        });
+
+        function toggleCalendar() {
+            $("#menu4").toggle();
+        }
+    </script>
 </head>
 
 <body>
-    <?php
-    $servername = "localhost";
-    $username = "root";
-    $password = '';
-    $dbname = "rezervace";
-
-    $conn = new mysqli($servername, $username, $password, $dbname);
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    } else {
-        $operatorName = $_POST['selectedCService'];
-        $serviceName = $_POST['selectedService'];
-        $serviceDate = $_POST['selectedDate'];
-        $serviceTime = $_POST['selectedTime'];
-        $formattedDate = date('Y-m-d', strtotime($serviceDate));
-
-        $sqlOperator = "SELECT id FROM operator WHERE jmeno = '$operatorName'";
-        $resultOperator = $conn->query($sqlOperator);
-
-        $sqlService = "SELECT id FROM sluzba WHERE typ_sluzby = '$serviceName'";
-        $resultService = $conn->query($sqlService);
-
-        if ($resultOperator->num_rows > 0 && $resultService->num_rows > 0) {
-            $rowOperator = $resultOperator->fetch_assoc();
-            $operatorId = $rowOperator['id'];
-
-            $rowService = $resultService->fetch_assoc();
-            $serviceId = $rowService['id'];
-
-            $sqlInsert = "INSERT INTO reservations (operator_id, sluzba_id, cas_sluzby, datum_sluzby) 
-                      VALUES ('$operatorId', '$serviceId', '$serviceTime', '$formattedDate')";
-
-            if ($conn->query($sqlInsert) === TRUE) {
-                header("Location: index.html");
-                exit();
+    <div class="pozice">
+        <div class="topnav" id="myTopnav">
+            <a href="index.php">Úvodní stránka</a>
+            <?php
+            session_start();
+            if (!isset($_SESSION['user_email'])) {
+                echo '<a href="" onclick="Login()">Přihlášení</a>';
+                echo '<a href="" onclick="Register()">Registrace</a>';
             }
+            ?>
+            <a href="Rezervace.php">Rezervace</a>
+
+            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                <i class="fa fa-bars"></i> </a>
+        </div>
+    </div>
+    <div class="background">
+        <?php
+
+        if (isset($_SESSION['user_email'])) {
+            $user_email = $_SESSION['user_email'];
+            echo '<div class="header">';
+            echo '<form method="post">';
+            echo '<button type="submit" name="logout">Odhlásit se</button>';
+            echo '</form>';
+            echo '</div>';
         } else {
-            header("Location: Rezervace.html");
-            exit();
-            echo "Operátor s jménem $operatorName nebyl nalezen nebo služba s názvem $serviceName nebyla nalezena.";
         }
-    }
-    ?>
+
+        if (isset($_POST["logout"])) {
+            session_unset();
+            session_destroy();
+
+            header("Location: index.php");
+            exit();
+        }
+        ?>
+        <div class="centerHeader">
+            <h1>Online rezervace </h1>
+        </div>
+
+        <div class="bloky-all">
+            <div class="bloky-1-2">
+                <div class="blok">
+                    <div class="menu-btn" onclick="toggleMenuTime()" id="ZvolenyCas">Vyberte čas</div>
+                    <div id="menu">
+                        <ul>
+                            <li onclick="selectItemTime('7:00')"><a href="#">7:00</a></li>
+                            <li onclick="selectItemTime('7:15')"><a href="#">7:15</a></li>
+                            <li onclick="selectItemTime('7:30')"><a href="#">7:30</a></li>
+                            <li onclick="selectItemTime('7:45')"><a href="#">7:45</a></li>
+                            <li onclick="selectItemTime('8:00')"><a href="#">8:00</a></li>
+                            <li onclick="selectItemTime('8:15')"><a href="#">8:15</a></li>
+                            <li onclick="selectItemTime('8:30')"><a href="#">8:30</a></li>
+                            <li onclick="selectItemTime('8:45')"><a href="#">8:45</a></li>
+                            <li onclick="selectItemTime('9:00')"><a href="#">9:00</a></li>
+                            <li onclick="selectItemTime('9:15')"><a href="#">9:15</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <br>
+                <div class="blok">
+                    <div class="menu2-btn" onclick="toggleMenuCService()" id="ZvolenaObsluha">Preferovaná obsluha</div>
+                    <div id="menu2">
+                        <ul>
+                            <li onclick="selectItemCService('Je mi to jedno')"><a href="#">Je mi to jedno</a></li>
+                            <li onclick="selectItemCService('Franta')"><a href="#">Franta</a></li>
+                            <li onclick="selectItemCService('Pavla')"><a href="#">Pavla</a></li>
+                            <li onclick="selectItemCService('Marie')"><a href="#">Marie</a></li>
+                            <li onclick="selectItemCService('Mário')"><a href="#">Mário</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+
+            <div class="bloky-3-4">
+                <div class="blok">
+                    <div class="menu3-btn" onclick="toggleMenuService()" id="ZvolenaSluzba">Služba</div>
+                    <div id="menu3">
+                        <ul>
+                            <li onclick="selectItemService('Klasický střih')"><a href="#">Klasický střih</a></li>
+                            <li onclick="selectItemService('Střih strojkem')"><a href="#">Střih strojkem</a></li>
+                            <li onclick="selectItemService('Klasický střih a úprava vousů hot towel')"><a href="#">Klasický
+                                    střih a
+                                    úprava vousů hot towel</a></li>
+                            <li onclick="selectItemService('Úprava vousů pouze strojkem')"><a href="#">Úprava vousů
+                                    pouze
+                                    strojkem</a></li>
+                            <li onclick="selectItemService('Střih strojkem a úprava vousů strojkem')"><a href="#">Střih
+                                    strojkem
+                                    a
+                                    úprava vousů strojkem</a></li>
+                            <li onclick="selectItemService('Barvení vousů')"><a href="#">Barvení vousů</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <br>
+                <div class="blok">
+                    <div class="menu4-btn" onclick="toggleCalendar()" id="zvoleneDatum"> Datum </div>
+                    <div id="menu4" style="display: none;"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    </div>
+    <div class="background">
+        <div class="confirm">
+            <form action="rezervace_zapis.php" method="post">
+                <input type="hidden" name="selectedTime" id="selectedTime" value="">
+                <input type="hidden" name="selectedService" id="selectedService" value="">
+                <input type="hidden" name="selectedCService" id="selectedCService" value="">
+                <input type="hidden" name="selectedDate" id="selectedDate" value="">
+                <input type="submit" value="POTVRDIT REZERVACI" class="buttonIn" onclick="submitForm()">
+            </form>
+        </div>
+    </div>
+
+    <div class="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2605.732653578486!2d15.888706476887588!3d49.22459707486512!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470d423e5579f153%3A0x882e29f2a26985b8!2zU3TFmWVkbsOtIHByxa9teXNsb3bDoSDFoWtvbGEgVMWZZWLDrcSN!5e0!3m2!1scs!2scz!4v1699739297062!5m2!1scs!2scz" width="600px" height="400px" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+
+    <div class="background">
+        <div class="central-gap">
+            <div class="left-s">
+
+                <div>
+                    <p class="bold"> SPŠT </p>
+                    <p> Manž. Curieových 734 </p>
+                    <p> 674 01 Třebíč 1</p>
+                    <p> Telefon : 645 213 564 </p>
+                </div>
+
+            </div>
+
+            <div class="right-s">
+
+                <div class="row-oph">
+                    <p class="bold"> Pondělí </p>
+                    <p class="right-si"> 7:00 - 10:00 </p>
+                </div>
+                <div class="row-oph">
+                    <p class="bold"> Útery </p>
+                    <p class="right-si"> 7:00 - 10:00 </p>
+                </div>
+                <div class="row-oph">
+                    <p class="bold"> Středa </p>
+                    <p class="right-si"> 7:00 - 10:00 </p>
+                </div>
+                <div class="row-oph">
+                    <p class="bold"> Čtvrtek </p>
+                    <p class="right-si"> 7:00 - 10:00 </p>
+                </div>
+                <div class="row-oph">
+                    <p class="bold"> Pátek </p>
+                    <p class="right-si"> 7:00 - 10:00 </p>
+                </div>
+                <div class="row-oph">
+                    <p class="bold"> Sobota </p>
+                    <p class="right-si"> --- --- </p>
+                </div>
+                <div class="row-oph">
+                    <p class="bold"> Neděle </p>
+                    <p class="right-si"> --- --- </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script src="rezervace.js"></script>
+
+    <footer>
+        <p> @Daniel Nováček 2023 <a href="spravcelogin.php">Správce</a> </p>
+    </footer>
 </body>
 
 </html>

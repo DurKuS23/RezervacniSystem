@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($count > 0) {
             echo '<script>alert("Tato emailová adresa je již registrovaná.");</script>';
-            header("Location: register.html");
+            echo "<script> window.location.href = 'register.html'; </script>";
         } else {
             $dataKUlozeni = array(
                 'Jmeno' => $Name,
@@ -54,8 +54,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (kontrolaNeprazdnychDat($dataKUlozeni)) {
                 $sql = "INSERT INTO uzivatele (Jmeno,Prijmeni,Email,Heslo) VALUES ('$Name', '$Surname','$Email','$hashHesla')";
                 $conn->query($sql);
+                echo '<script>alert("Úspěšně registrován !");</script>';
+                session_start();
+                $_SESSION['user_email'] = $Email;
+                echo "<script>window.opener.location.reload();</script>";
+                echo "<script>window.close();</script>";
             } else {
                 echo '<script>alert("Chyba: Některá pole jsou prázdná nebo obsahují pouze mezery.")</script>';
+                echo "<script> window.location.href = 'register.html'; </script>";
             }
         }
     }
