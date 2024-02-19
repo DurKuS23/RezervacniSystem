@@ -10,7 +10,7 @@ if (isset($_POST["logout"])) {
     session_unset();
     session_destroy();
 
-    header("Location: index.html");
+    header("Location: index.php");
     exit();
 }
 
@@ -25,6 +25,18 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_reservation'])) {
+    $reservation_id = $_POST['reservation_id'];
+    
+    $delete_query = "DELETE FROM reservations WHERE reservation_id = $reservation_id";
+
+    if ($conn->query($delete_query) === TRUE) {
+        echo "<script> alert('Rezervace s ID $reservation_id byla úspěšně smazána.') </script>";
+    } else {
+        echo "Chyba při mazání rezervace: " . $conn->error;
+    }
+}
+
 $query = "SELECT r.reservation_id, o.jmeno AS operator_jmeno, r.datum_sluzby, r.cas_sluzby, s.typ_sluzby
           FROM reservations r
           LEFT JOIN operator o ON r.operator_id = o.id
@@ -33,27 +45,9 @@ $query = "SELECT r.reservation_id, o.jmeno AS operator_jmeno, r.datum_sluzby, r.
 $result = $conn->query($query);
 ?>
 
-<?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "rezervace";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-function click($btn)
-{
-    $reservationId = $btn + 1;
-    $sql = "DELETE FROM reservations WHERE reservation_id = '$reservationId'";
-}
-?>
-
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -70,10 +64,17 @@ function click($btn)
 <body>
     <div class="pozice">
         <div class="topnav" id="myTopnav">
-            <a href="index.html">Úvodní stránka</a>
-            <a href="login.html">Přihlášení</a>
-            <a href="register.html">Registrace</a>
-            <a href="Rezervace.html">Rezervace</a>
+            <a href="index.php">Úvodní stránka</a>
+            <?php
+            if (!isset($_SESSION['logged_in'])) {
+                echo '<a href="" onclick="Login()">Přihlášení</a>';
+                echo '<a href="" onclick="Register()">Registrace</a>';
+            }
+            ?>
+            <a href="Rezervace.php">Rezervace</a>
+            <a href="Editor.php">Editor</a>
+            <a href="Spravce.php">Správce</a>
+
             <a href="javascript:void(0);" class="icon" onclick="myFunction()">
                 <i class="fa fa-bars"></i> </a>
         </div>
@@ -98,7 +99,10 @@ function click($btn)
                 }
                 echo "<div class='res-row'>";
                 echo "<div class='cont-buttons'>";
-                echo "<button class='delete-button' onclick='window.click($counter);'>Smazat</button>";
+                echo "<form method='post'>";
+                echo "<input type='hidden' name='reservation_id' value='" . $row["reservation_id"] . "'>";
+                echo "<button type='submit' class='delete_reservation' name='delete_reservation'>Smazat</button>";
+                echo "</form>";
                 echo "</div>";
                 echo "<p class='bold-text'>Reservation ID: " . $row["reservation_id"] . "</p>";
                 echo "<p>Obsluha: " . $row["operator_jmeno"] . "</p>";
@@ -113,10 +117,6 @@ function click($btn)
             echo "<p>No reservations found.</p>";
         }
 
-
-
-        $result->free_result();
-        $conn->close();
         ?>
 
     </div>
