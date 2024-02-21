@@ -52,16 +52,24 @@
         exit();
     }
     ?>
-    <div class="cont-1">
-        <div class="headerH1">
-            <h1 class="txttt"> Barber Shop</h1>
+    <div class="wavy-line">
+        <div class="cont-1">
+            <div class="headerH1">
+                <h1 class="txt"> Barber Shop</h1>
+            </div>
+
+            <div class="headerH3">
+                <h3> Tradiční holičství </h3>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="cont-2">
+        <div class="headerH3">
+            <h1> zkouska </h1>
         </div>
     </div>
-
-    <div class="headerH1">
-        <h3> Třadiční holičství </h3>
-    </div>
-
     <footer>
         <p> @Daniel Nováček 2023 <a href="spravcelogin.php">Správce </a></p>
     </footer>
