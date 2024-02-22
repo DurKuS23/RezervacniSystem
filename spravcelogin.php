@@ -60,16 +60,21 @@ $conn->close();
     <title>Přihlášení</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <h1>Přihlášení</h1>
-    <form action="" method="post">
-        <input type="email" name="email" placeholder="email" required>
-        <input type="password" name="password" placeholder="password" required>
-        <button type="submit">Přihlásit</button>
-    </form>
+    <div class="logo">
+        <img src="image/logo.png" alt="logo" onclick="closeWindow()">
+    </div>
+    <div class="container2">
+        <h1>Přihlášení</h1>
+        <form action="" method="post">
+            <input type="email" name="email" placeholder="email" required>
+            <input type="password" name="password" placeholder="password" required>
+            <button type="submit">Přihlásit</button>
+        </form>
+    </div>
 </body>
 
 </html>

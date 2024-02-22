@@ -39,3 +39,14 @@ function closeWindow() {
     window.opener.closeWindow();
     window.close();
 }
+
+
+function spravce() {
+    var width = 540;
+    var height = 450;
+    var left = (window.innerWidth - width) / 2;
+    var top = (window.innerHeight - height) / 2;
+    var options = 'width=' + width + ',height=' + height + ',left=' + left + ',top=' + top;
+  
+    var newWindow = window.open('spravcelogin.php', 'centeredWindow', options);
+  }
