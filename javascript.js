@@ -39,4 +39,3 @@ function closeWindow() {
     window.opener.closeWindow();
     window.close();
 }
-
