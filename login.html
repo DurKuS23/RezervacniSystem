@@ -11,6 +11,9 @@
 </head>
 
 <body>
+    <div class="logo">
+        <img src="image/logo.png" alt="logo" onclick="closeWindow()">
+    </div>
     <div class="container2">
         <h1>Přihlášení</h1>
         <form action="login.php" method="post">
@@ -20,6 +23,12 @@
             <a href="register.html"> Vytvořit účet </a>
         </form>
     </div>
+    <script>
+        function closeWindow() {
+            window.opener.location.href = 'index.php';
+            window.close();
+        }
+    </script>
 </body>
 
 </html>

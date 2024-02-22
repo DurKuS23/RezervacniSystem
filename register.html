@@ -11,6 +11,9 @@
 </head>
 
 <body>
+    <div class="logo">
+            <img src="image/logo.png" class="left" alt="logo" onclick="closeWindow()">
+    </div>
     <div class="container1">
         <h1>Registrace</h1>
         <form action="register.php" method="post">
@@ -21,6 +24,12 @@
             <button type="submit" name="odeslat" id="end">Registrovat</button>
         </form>
     </div>
+    <script>
+        function closeWindow() {
+            window.opener.location.href = 'index.php';
+            window.close();
+        }
+    </script>
 </body>
 
 </html>
