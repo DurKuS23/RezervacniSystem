@@ -165,7 +165,7 @@
         <div class="central-gap">
             <div class="left-s">
 
-                <div>
+                <div class="column-oph">
                     <p class="bold"> SPŠT </p>
                     <p> Manž. Curieových 734 </p>
                     <p> 674 01 Třebíč 1</p>
@@ -178,31 +178,35 @@
 
                 <div class="row-oph">
                     <p class="bold"> Pondělí </p>
-                    <p class="right-si"> 7:00 - 10:00 </p>
+                    <div>
+                        <p> 7:00 - 10:00 </p>
+                    </div>
                 </div>
                 <div class="row-oph">
                     <p class="bold"> Útery </p>
-                    <p class="right-si"> 7:00 - 10:00 </p>
+                    <div>
+                        <p> 7:00 - 10:00 </p>
+                    </div>
                 </div>
                 <div class="row-oph">
                     <p class="bold"> Středa </p>
-                    <p class="right-si"> 7:00 - 10:00 </p>
+                    <p> 7:00 - 10:00 </p>
                 </div>
                 <div class="row-oph">
                     <p class="bold"> Čtvrtek </p>
-                    <p class="right-si"> 7:00 - 10:00 </p>
+                    <p> 7:00 - 10:00 </p>
                 </div>
                 <div class="row-oph">
                     <p class="bold"> Pátek </p>
-                    <p class="right-si"> 7:00 - 10:00 </p>
+                    <p> 7:00 - 10:00 </p>
                 </div>
                 <div class="row-oph">
                     <p class="bold"> Sobota </p>
-                    <p class="right-si"> --- --- </p>
+                    <p> zavřeno </p>
                 </div>
                 <div class="row-oph">
                     <p class="bold"> Neděle </p>
-                    <p class="right-si"> --- --- </p>
+                    <p> zavřeno </p>
                 </div>
 
             </div>
