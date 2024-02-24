@@ -82,16 +82,44 @@
                     <div class="menu-btn" onclick="toggleMenuTime()" id="ZvolenyCas">Vyberte čas</div>
                     <div id="menu">
                         <ul>
-                            <li onclick="selectItemTime('7:00')"><a href="#">7:00</a></li>
-                            <li onclick="selectItemTime('7:15')"><a href="#">7:15</a></li>
-                            <li onclick="selectItemTime('7:30')"><a href="#">7:30</a></li>
-                            <li onclick="selectItemTime('7:45')"><a href="#">7:45</a></li>
-                            <li onclick="selectItemTime('8:00')"><a href="#">8:00</a></li>
-                            <li onclick="selectItemTime('8:15')"><a href="#">8:15</a></li>
-                            <li onclick="selectItemTime('8:30')"><a href="#">8:30</a></li>
-                            <li onclick="selectItemTime('8:45')"><a href="#">8:45</a></li>
-                            <li onclick="selectItemTime('9:00')"><a href="#">9:00</a></li>
-                            <li onclick="selectItemTime('9:15')"><a href="#">9:15</a></li>
+                            <?php
+                            $servername = "localhost";
+                            $username = "root";
+                            $password = "";
+                            $dbname = "rezervace";
+
+                            $conn = new mysqli($servername, $username, $password, $dbname);
+
+                            if ($conn->connect_error) {
+                                die("Connection failed: " . $conn->connect_error);
+                            } else {
+                                $sql = "SELECT cas_otvirani, cas_zavirani FROM casrozpeti WHERE id = 1";
+
+                                $result = $conn->query($sql);
+
+                                if ($result->num_rows > 0) {
+                                    $row = $result->fetch_assoc();
+                                    $openingTime = $row["cas_otvirani"];
+                                    $closingTime = $row["cas_zavirani"];
+                                } else {
+                                    echo "0 results";
+                                }
+                            }
+
+                            $startTime = strtotime($openingTime);
+                            $endTime = strtotime($closingTime);
+
+                            $currentTime = $startTime;
+                            echo "<ul>";
+                            while ($currentTime <= $endTime) {
+                                echo '<li onclick="selectItemTime(\'' . date('H:i', $currentTime) . '\')"><a href="#">' . date('H:i', $currentTime) . '</a></li>';
+                                $currentTime += 15 * 60;
+                            }
+                            echo "</ul>";
+
+                            $conn->close();
+                            ?>
+
                         </ul>
                     </div>
                 </div>

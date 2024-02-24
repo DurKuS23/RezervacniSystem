@@ -82,9 +82,9 @@ form select {
 .groups {
     grid-gap: 5rem;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
-    align-items: start;
+    align-items: center;
     text-align: center;
 }
 
@@ -130,12 +130,46 @@ form select {
     background-color: #0056b3;
 }
 
-.newStaffT{
+.newStaffT {
     width: 150px;
     height: 30px;
 }
 
-.NewStaffM{
+.NewStaffM {
     margin-top: 10px;
     height: 50px;
+}
+
+.dateEdt {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    text-align: right;
+}
+
+.calendar-row {
+    display: flex;
+}
+
+.day {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #ccc;
+    text-align: center;
+    line-height: 30px;
+}
+
+.sunday {
+    color: red;
+}
+
+.today {
+    background-color: yellow;
+}
+
+.dbinfo {
+    color: white;
 }
