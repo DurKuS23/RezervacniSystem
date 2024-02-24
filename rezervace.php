@@ -112,7 +112,7 @@
                             $currentTime = $startTime;
                             echo "<ul>";
                             while ($currentTime <= $endTime) {
-                                echo '<li onclick="selectItemTime(\'' . date('H:i', $currentTime) . '\')"><a href="#">' . date('H:i', $currentTime) . '</a></li>';
+                                echo '<li class="bold" onclick="selectItemTime(\'' . date('H:i', $currentTime) . '\')"><a href="#">' . date('H:i', $currentTime) . '</a></li>';
                                 $currentTime += 15 * 60;
                             }
                             echo "</ul>";
@@ -146,22 +146,41 @@
                     <div class="menu3-btn" onclick="toggleMenuService()" id="ZvolenaSluzba">Služba</div>
                     <div id="menu3">
                         <ul>
-                            <li onclick="selectItemService('Klasický střih')"><a href="#">Klasický střih</a></li>
-                            <li onclick="selectItemService('Střih strojkem')"><a href="#">Střih strojkem</a></li>
-                            <li onclick="selectItemService('Klasický střih a úprava vousů hot towel')"><a href="#">Klasický
-                                    střih a
-                                    úprava vousů hot towel</a></li>
-                            <li onclick="selectItemService('Úprava vousů pouze strojkem')"><a href="#">Úprava vousů
-                                    pouze
-                                    strojkem</a></li>
-                            <li onclick="selectItemService('Střih strojkem a úprava vousů strojkem')"><a href="#">Střih
-                                    strojkem
-                                    a
-                                    úprava vousů strojkem</a></li>
-                            <li onclick="selectItemService('Barvení vousů')"><a href="#">Barvení vousů</a></li>
+                            <?php
+                            $servername = "localhost";
+                            $username = "root";
+                            $password = "";
+                            $dbname = "rezervace";
+
+                            $conn = new mysqli($servername, $username, $password, $dbname);
+
+                            if ($conn->connect_error) {
+                                die("Connection failed: " . $conn->connect_error);
+                            }
+
+                            $sql = "SELECT typ_sluzby, casSluzby, cena FROM sluzba";
+                            $result = $conn->query($sql);
+
+                            if ($result->num_rows > 0) {
+                                while ($row = $result->fetch_assoc()) {
+                                    $cas_sluzby = date('i', strtotime($row["casSluzby"])) . "min";
+                                    $cas_sluzby = ltrim($cas_sluzby, '0');
+                                    $cena = number_format($row["cena"], 0, '', '') . ' Kč';
+                                    echo '<li onclick="selectItemService(\'' . $row["typ_sluzby"] . '\')">';
+                                    echo '<a href="#">' . $row["typ_sluzby"] . ' - <span class="bold">' . $cas_sluzby . '</span></a>';
+                                    echo '<br>';
+                                    echo '<a href="#">cena: <span class="bold">' . $cena . '</span></a></li>';
+                                }
+                            } else {
+                                echo "0 results";
+                            }
+                            $conn->close();
+                            ?>
                         </ul>
                     </div>
                 </div>
+
+
                 <br>
                 <div class="blok">
                     <div class="menu4-btn" onclick="toggleCalendar()" id="zvoleneDatum"> Datum </div>

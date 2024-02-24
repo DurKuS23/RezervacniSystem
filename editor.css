@@ -80,12 +80,13 @@ form select {
 }
 
 .groups {
-    grid-gap: 5rem;
+    color: white;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     text-align: center;
+    grid-gap: 5rem;
 }
 
 .obsluhaEdt {
@@ -172,4 +173,32 @@ form select {
 
 .dbinfo {
     color: white;
+}
+
+.serviceEdt {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    text-align: right;
+}
+
+.row-buttons {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+}
+
+form input {
+    width: 300px;
+    height: 30px;
+}
+
+form {
+    justify-content: right;
+    align-items: right;
 }
