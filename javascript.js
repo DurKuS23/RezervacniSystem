@@ -75,3 +75,16 @@ function generateTimeArray() {
         alert("Otevírací čas musí být před zavíracím !");
     }
 }
+
+function saveDate(selectedDate) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        console.log("readyState: " + this.readyState + ", status: " + this.status);
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("selectedDateInfo").innerHTML = this.responseText;
+        }
+    };
+    xhttp.open("POST", "ajax_script.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("selectedDate=" + selectedDate);
+}

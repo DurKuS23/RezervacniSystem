@@ -4,6 +4,8 @@ body {
     padding: 0;
     width: 100%;
     background-color: rgba(18, 18, 18, 0.9);
+    display: flex;
+    flex-direction: column;
 }
 
 .cont-1 {
@@ -79,42 +81,6 @@ form select {
     margin-bottom: 20px;
 }
 
-.groups {
-    color: white;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    grid-gap: 5rem;
-}
-
-.obsluhaEdt {
-    display: flex;
-    flex-direction: column;
-    max-width: 100%;
-    color: white;
-    justify-content: center;
-    align-items: center;
-    text-align: right;
-}
-
-.obsluhabtn {
-    background-color: #007BFF;
-    color: #fff;
-    max-width: 150px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    height: 50px;
-    width: 150px;
-    border: none;
-    cursor: pointer;
-}
-
-.obsluhabtn:hover {
-    background-color: #0056b3;
-}
-
 .timeBtn {
     background-color: #007BFF;
     color: #fff;
@@ -141,38 +107,9 @@ form select {
     height: 50px;
 }
 
-.dateEdt {
-    display: flex;
-    flex-direction: column;
-    max-width: 100%;
-    color: white;
-    justify-content: center;
-    align-items: center;
-    text-align: right;
-}
-
-.calendar-row {
-    display: flex;
-}
-
-.day {
-    width: 30px;
-    height: 30px;
-    border: 1px solid #ccc;
-    text-align: center;
-    line-height: 30px;
-}
-
-.sunday {
-    color: red;
-}
-
-.today {
-    background-color: yellow;
-}
-
 .dbinfo {
     color: white;
+    font-weight: bold;
 }
 
 .serviceEdt {
@@ -191,6 +128,7 @@ form select {
     text-align: center;
     display: flex;
     flex-direction: row;
+    width: 100%;
 }
 
 form input {
@@ -201,4 +139,80 @@ form input {
 form {
     justify-content: right;
     align-items: right;
+}
+
+/* Kalendář  */
+.calendar {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.calendar th,
+.calendar td {
+    padding: 10px;
+    text-align: center;
+}
+
+.calendar th {
+    background-color: rgba(18, 18, 18, 0.9);
+}
+
+.calendar a {
+    display: block;
+    text-decoration: none;
+    color: white;
+}
+
+.calendar a:hover {
+    background-color: rgba(18, 18, 18, 0.9);
+}
+
+.dateEdt {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    text-align: right;
+}
+
+.groups {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    grid-gap: 5rem;
+}
+
+.group1 {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    grid-gap: 5rem;
+}
+
+.group2 {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    grid-gap: 5rem;
+}
+
+.buttonCalendar {
+    background-color: #333;
+    width: 100%;
+    height: 100%;
+}
+
+.buttonCalendar:hover {
+    background-color: rgba(18, 18, 18, 0.9);
 }
