@@ -21,24 +21,6 @@ function loadReservations() {
 }
 window.onload = loadReservations;
 
-/*
-function deleteReservation(button) {
-    var reservationId = button.getAttribute('data-id');
-    if (confirm("Opravdu chcete smazat tuto rezervaci?")) {
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "spravce.php", true);
-        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState == 4 && xhr.status == 200) {
-                alert(xhr.responseText);
-                location.reload();
-            }
-        };
-        xhr.send("reservation_id=" + reservationId);
-    }
-}
-*/
-
 function showConfirmation() {
     var response = confirm("Opravdu chcete smazat rezervaci ?");
     if (response == true) {

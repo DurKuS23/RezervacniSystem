@@ -11,3 +11,34 @@ if (isset($_POST['selectedDate'])) {
 }
 ?>
 
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["openingTime"]) && isset($_POST["closingTime"])) {
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "rezervace";
+
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    if ($conn->connect_error) {
+        die("Chyba připojení k databázi: " . $conn->connect_error);
+    }
+
+    $openingTime = $_POST["openingTime"];
+    $closingTime = $_POST["closingTime"];
+
+    if ($openingTime < $closingTime) {
+        $sql = "UPDATE casrozpeti SET cas_otvirani='$openingTime', cas_zavirani='$closingTime' WHERE id=1";
+
+        if ($conn->query($sql) === TRUE) {
+            echo "<p class='dbinfo'> Aktuální nastavený čas v databázi: Otevírací čas -  $openingTime, Zavírací čas - $closingTime </p>";
+        } else {
+            echo "Chyba při aktualizaci dat: " . $conn->error;
+        }
+    } else {
+        echo "<script>alert('Čas nebyl aktualizován, nemůžeš mít otevírací čas větší než zavírací.');</script>";
+    }
+
+    $conn->close();
+}
+
+

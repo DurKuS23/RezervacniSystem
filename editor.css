@@ -51,15 +51,7 @@ button:hover {
     }
 }
 
-.timeEdt {
-    display: flex;
-    flex-direction: column;
-    max-width: 100%;
-    color: white;
-    justify-content: center;
-    align-items: center;
-    text-align: right;
-}
+
 
 form label {
     font-size: x-large;
@@ -84,11 +76,11 @@ form select {
 .timeBtn {
     background-color: #007BFF;
     color: #fff;
-    max-width: 150px;
+    max-width: 200px;
     margin-top: 10px;
     margin-bottom: 10px;
     height: 50px;
-    width: 150px;
+    width: 200px;
     border: none;
     cursor: pointer;
 }
@@ -112,23 +104,31 @@ form select {
     font-weight: bold;
 }
 
-.serviceEdt {
-    display: flex;
-    flex-direction: column;
-    max-width: 100%;
+
+
+.bolderService {
+    font-weight: bold;
     color: white;
-    justify-content: center;
-    align-items: center;
-    text-align: right;
 }
 
+.bolderService input {
+    width: 300px;
+    height: 50px;
+}
+
+
 .row-buttons {
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+    justify-content: right;
+    align-items: right;
+    text-align: right;
     display: flex;
     flex-direction: row;
     width: 100%;
+}
+
+.row-buttons button {
+    width: 250px;
+    height: 50px;
 }
 
 form input {
@@ -139,6 +139,11 @@ form input {
 form {
     justify-content: right;
     align-items: right;
+}
+
+input {
+    width: 300px;
+    height: 30px;
 }
 
 /* Kalendář  */
@@ -167,15 +172,35 @@ form {
     background-color: rgba(18, 18, 18, 0.9);
 }
 
-.dateEdt {
-    display: flex;
-    flex-direction: column;
-    max-width: 100%;
-    color: white;
-    justify-content: center;
-    align-items: center;
-    text-align: right;
+
+
+
+.buttonCalendar {
+    background-color: #333;
+    width: 100%;
+    height: 100%;
 }
+
+.buttonCalendar:hover {
+    background-color: rgba(18, 18, 18, 0.9);
+}
+
+.serviceBtn {
+    background-color: #007BFF;
+    color: #fff;
+    max-width: 150px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 50px;
+    width: 150px;
+    border: none;
+    cursor: pointer;
+}
+
+.serviceBtn:hover {
+    background-color: #0056b3;
+}
+
 
 .groups {
     color: white;
@@ -189,6 +214,7 @@ form {
 
 .group1 {
     width: 100%;
+    height: 100%;
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -199,6 +225,7 @@ form {
 
 .group2 {
     width: 100%;
+    height: 100%;
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -207,12 +234,85 @@ form {
     grid-gap: 5rem;
 }
 
-.buttonCalendar {
-    background-color: #333;
+.it1 {
     width: 100%;
     height: 100%;
 }
 
-.buttonCalendar:hover {
-    background-color: rgba(18, 18, 18, 0.9);
+
+.dateEdt {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    text-align: right;
+}
+
+.timeEdt {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    height: 500px;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    text-align: right;
+}
+
+.timeEdt p {
+    text-align: center;
+}
+
+.serviceEdt {
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    text-align: right;
+}
+
+
+@media screen and (max-width: 1200px) {
+    .group1 {
+        flex-direction: column;
+    }
+
+    .group2 {
+        flex-direction: column;
+        grid-gap: 0;
+        padding: 0;
+        margin: 0;
+    }
+
+    .timeEdt {
+        padding: 20px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+
+    .calendar th,
+    .calendar td {
+        padding: 0px;
+        text-align: center;
+    }
+
+    .timeEdt {
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 40px;
+    }
+
+    .serviceEdt {
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 40px;
+    }
 }
