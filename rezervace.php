@@ -18,12 +18,12 @@
                 minDate: new Date(),
                 maxDate: new Date(new Date().getFullYear(), 11, 31),
                 onSelect: function(dateText) {
-                    $("#zvoleneDatum").text("Datum:" + dateText);
+                    $("#zvoleneDatum").text("Datum: " + dateText);
                     $("#menu4").hide();
                 },
                 beforeShowDay: function(date) {
                     var day = date.getDay();
-                    return [(day >= 1 && day <= 5), "", ""];
+                    return [(day !== 6 && day !== 0), ""];
                 }
             });
         });
@@ -183,9 +183,11 @@
 
                 <br>
                 <div class="blok">
-                    <div class="menu4-btn" onclick="toggleCalendar()" id="zvoleneDatum"> Datum </div>
-                    <div id="menu4" style="display: none;"></div>
+                    <div class="menu4-btn" onclick="toggleCalendar()" name="" id="zvoleneDatum">Datum</div>
+                    <div id="menu4" style="display: none;">
+                    </div>
                 </div>
+
 
             </div>
         </div>

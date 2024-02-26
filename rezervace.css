@@ -445,4 +445,6 @@ button:hover {
     }
 }
 
-
+.ui-datepicker-week-end {
+    display: none; /* Skryje soboty a neděle */
+  }
