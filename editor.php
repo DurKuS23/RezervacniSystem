@@ -67,7 +67,7 @@ if (isset($_POST["logout"])) {
     <div class="groups">
         <div class="group1">
             <div class="it1">
-                <div class="dateEdt">
+            <div class="dateEdt">
                     <?php
                     $servername = "localhost";
                     $username = "root";
@@ -197,13 +197,8 @@ if (isset($_POST["logout"])) {
                                 },
                                 success: function(response) {
                                     if (response === "success") {
-                                        // Úspěšný zápis do databáze
                                         alert("Data byla úspěšně uložena do databáze.");
-                                        // Změna barvy tlačítka
                                         $(".buttonCalendar").addClass("updatedButtonColor");
-                                    } else {
-                                        // Chyba při zápisu do databáze
-                                        alert("Nepodařilo se uložit data do databáze.");
                                     }
                                 }
                             });
