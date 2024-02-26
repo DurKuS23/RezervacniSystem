@@ -87,7 +87,19 @@ function saveDate(selectedDate) {
     xhttp.open("POST", "ajax_script.php", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send("selectedDate=" + selectedDate);
+
+    var xhttp2 = new XMLHttpRequest();
+    xhttp2.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("selectedDateOperator").innerHTML = this.responseText;
+        }
+    };
+    xhttp2.open("POST", "CService.php", true);
+    xhttp2.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp2.send("selectedDate=" + selectedDate);
 }
+
+
 
 function sendFormData() {
     var openingTime = document.getElementById("openingTime").value;
