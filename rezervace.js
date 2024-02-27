@@ -46,27 +46,27 @@ function selectDateService(item) {
     zvolenyItemService.textContent = "Zvolené datum: " + item;
 }
 
-    function submitForm() {
+function submitForm() {
 
-        var selectedTimeElement = document.getElementById("ZvolenyCas");
-        var selectedCServiceElement = document.getElementById("ZvolenaObsluha");
-        var selectedServiceElement = document.getElementById("ZvolenaSluzba");
-        var selectedDateElement = document.getElementById("zvoleneDatum");
+    var selectedTimeElement = document.getElementById("ZvolenyCas");
+    var selectedCServiceElement = document.getElementById("ZvolenaObsluha");
+    var selectedServiceElement = document.getElementById("ZvolenaSluzba");
+    var selectedDateElement = document.getElementById("zvoleneDatum");
 
-        var selectedTime = selectedTimeElement.textContent.replace("Zvolený čas:", "").trim();
-        var selectedService = selectedServiceElement.textContent.replace("Zvolená služba:", "").trim();
-        var selectedCService = selectedCServiceElement.textContent.replace("Zvolená obsluha:", "").trim();
-        var selectedDate = selectedDateElement.textContent.replace("Datum:", "").trim();
+    var selectedTime = selectedTimeElement.textContent.replace("Zvolený čas:", "").trim();
+    var selectedService = selectedServiceElement.textContent.replace("Zvolená služba:", "").trim();
+    var selectedCService = selectedCServiceElement.textContent.replace("Zvolená obsluha:", "").trim();
+    var selectedDate = selectedDateElement.textContent.replace("Datum:", "").trim();
 
-        if (selectedTime !== "Vyberte čas" && selectedService !== "Služba" && selectedCService !== "Preferovaná obsluha" && selectedDate !== "Datum") {
-            document.getElementById("selectedTime").value = selectedTime;
-            document.getElementById("selectedCService").value = selectedCService;
-            document.getElementById("selectedService").value = selectedService;
-            document.getElementById("selectedDate").value = selectedDate;
-            alert("Vaše rezervace byla úspěšná !");
-        } else {
-            alert("Prosím vyplňte všechna pole formuláře.");
-        }
+    if (selectedTime !== "Vyberte čas" && selectedService !== "Služba" && selectedCService !== "Preferovaná obsluha" && selectedDate !== "Datum") {
+        document.getElementById("selectedTime").value = selectedTime;
+        document.getElementById("selectedCService").value = selectedCService;
+        document.getElementById("selectedService").value = selectedService;
+        document.getElementById("selectedDate").value = selectedDate;
+        alert("Vaše rezervace byla úspěšná !");
+    } else {
+        alert("Prosím vyplňte všechna pole formuláře.");
     }
+}
 
 
