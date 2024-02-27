@@ -18,7 +18,28 @@
                 minDate: new Date(),
                 maxDate: new Date(new Date().getFullYear(), 11, 31),
                 onSelect: function(dateText) {
+                    var selectedDate = dateText;
                     $("#zvoleneDatum").text("Datum: " + dateText);
+                    $.ajax({
+                        url: 'zamestnanci.php',
+                        method: 'GET',
+                        data: {
+                            datum: selectedDate
+                        },
+                        success: function(response) {
+                            $("#operatorList").empty();
+                            $("#operatorList").append("<li onclick=\"selectItemCService('Je mi to jedno')\"><a href=\"#\"> Je mi to jedno </a></li>");
+                            response.forEach(function(operator) {
+                                var operatorName = operator.jmeno;
+                                $("#operatorList").append("<li onclick=\"selectItemCService('" + operatorName + "')\"><a href=\"#\">" + operatorName + "</a></li>");
+                            });
+
+                            toggleMenuCService();
+                        },
+                        error: function(xhr, status, error) {
+                            console.error(error);
+                        }
+                    });
                     $("#menu4").hide();
                 },
                 beforeShowDay: function(date) {
@@ -27,6 +48,7 @@
                 }
             });
         });
+
 
         function toggleCalendar() {
             $("#menu4").toggle();
@@ -79,61 +101,17 @@
         <div class="bloky-all">
             <div class="bloky-1-2">
                 <div class="blok">
-                    <div class="menu-btn" onclick="toggleMenuTime()" id="ZvolenyCas">Vyberte čas</div>
-                    <div id="menu">
-                        <ul>
-                            <?php
-                            $servername = "localhost";
-                            $username = "root";
-                            $password = "";
-                            $dbname = "rezervace";
-
-                            $conn = new mysqli($servername, $username, $password, $dbname);
-
-                            if ($conn->connect_error) {
-                                die("Connection failed: " . $conn->connect_error);
-                            } else {
-                                $sql = "SELECT cas_otvirani, cas_zavirani FROM casrozpeti WHERE id = 1";
-
-                                $result = $conn->query($sql);
-
-                                if ($result->num_rows > 0) {
-                                    $row = $result->fetch_assoc();
-                                    $openingTime = $row["cas_otvirani"];
-                                    $closingTime = $row["cas_zavirani"];
-                                } else {
-                                    echo "0 results";
-                                }
-                            }
-
-                            $startTime = strtotime($openingTime);
-                            $endTime = strtotime($closingTime);
-
-                            $currentTime = $startTime;
-                            echo "<ul>";
-                            while ($currentTime <= $endTime) {
-                                echo '<li class="bold" onclick="selectItemTime(\'' . date('H:i', $currentTime) . '\')"><a href="#">' . date('H:i', $currentTime) . '</a></li>';
-                                $currentTime += 15 * 60;
-                            }
-                            echo "</ul>";
-
-                            $conn->close();
-                            ?>
-
-                        </ul>
+                    <div class="menu4-btn" onclick="toggleCalendar()" name="" id="zvoleneDatum">Datum</div>
+                    <div id="menu4" style="display: none;">
                     </div>
                 </div>
+
 
                 <br>
                 <div class="blok">
                     <div class="menu2-btn" onclick="toggleMenuCService()" id="ZvolenaObsluha">Preferovaná obsluha</div>
                     <div id="menu2">
-                        <ul>
-                            <li onclick="selectItemCService('Je mi to jedno')"><a href="#">Je mi to jedno</a></li>
-                            <li onclick="selectItemCService('Franta')"><a href="#">Franta</a></li>
-                            <li onclick="selectItemCService('Pavla')"><a href="#">Pavla</a></li>
-                            <li onclick="selectItemCService('Marie')"><a href="#">Marie</a></li>
-                            <li onclick="selectItemCService('Mário')"><a href="#">Mário</a></li>
+                        <ul id="operatorList">
                         </ul>
                     </div>
                 </div>
@@ -182,13 +160,52 @@
 
 
                 <br>
+
                 <div class="blok">
-                    <div class="menu4-btn" onclick="toggleCalendar()" name="" id="zvoleneDatum">Datum</div>
-                    <div id="menu4" style="display: none;">
+                    <div class="menu-btn" onclick="toggleMenuTime()" id="ZvolenyCas">Vyberte čas</div>
+                    <div id="menu">
+                        <ul>
+                            <?php
+                            $servername = "localhost";
+                            $username = "root";
+                            $password = "";
+                            $dbname = "rezervace";
+
+                            $conn = new mysqli($servername, $username, $password, $dbname);
+
+                            if ($conn->connect_error) {
+                                die("Connection failed: " . $conn->connect_error);
+                            } else {
+                                $sql = "SELECT cas_otvirani, cas_zavirani FROM casrozpeti WHERE id = 1";
+
+                                $result = $conn->query($sql);
+
+                                if ($result->num_rows > 0) {
+                                    $row = $result->fetch_assoc();
+                                    $openingTime = $row["cas_otvirani"];
+                                    $closingTime = $row["cas_zavirani"];
+                                } else {
+                                    echo "0 results";
+                                }
+                            }
+
+                            $startTime = strtotime($openingTime);
+                            $endTime = strtotime($closingTime);
+
+                            $currentTime = $startTime;
+                            echo "<ul>";
+                            while ($currentTime <= $endTime) {
+                                echo '<li class="bold" onclick="selectItemTime(\'' . date('H:i', $currentTime) . '\')"><a href="#">' . date('H:i', $currentTime) . '</a></li>';
+                                $currentTime += 15 * 60;
+                            }
+                            echo "</ul>";
+
+                            $conn->close();
+                            ?>
+
+                        </ul>
                     </div>
                 </div>
-
-
             </div>
         </div>
     </div>

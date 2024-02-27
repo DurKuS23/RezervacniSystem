@@ -6,10 +6,6 @@ body {
     min-height: 100vh;
     align-items: center;
     justify-content: center;
-    background-image: url(image/backgroundImage.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
 }
 
 footer {
@@ -282,4 +278,20 @@ button:hover {
     margin: 0 auto;
     margin-top: 0;
 
+}
+
+.background {
+    background-image: url(image/backgroundImage.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    height: 100vh;
+}
+
+.background2 {
+    background-color: #121212;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: top;
+    height: fit-content;
 }

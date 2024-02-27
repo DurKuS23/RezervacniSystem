@@ -44,7 +44,7 @@ function selectDateService(item) {
     menu.style.display = 'none';
     var zvolenyItemService = document.getElementById('reservationDate');
     zvolenyItemService.textContent = "Zvolené datum: " + item;
-} -
+}
 
     function submitForm() {
 
