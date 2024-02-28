@@ -1,34 +1,3 @@
-<script>
-    function submitForm() {
-
-        var selectedTimeElement = document.getElementById("ZvolenyCas");
-        var selectedCServiceElement = document.getElementById("ZvolenaObsluha");
-        var selectedServiceElement = document.getElementById("ZvolenaSluzba");
-        var selectedDateElement = document.getElementById("zvoleneDatum");
-
-        var selectedTime = selectedTimeElement.textContent.replace("Zvolený čas:", "").trim();
-        var selectedService = selectedServiceElement.textContent.replace("Zvolená služba:", "").trim();
-        var selectedCService = selectedCServiceElement.textContent.replace("Zvolená obsluha:", "").trim();
-        var selectedDate = selectedDateElement.textContent.replace("Datum:", "").trim();
-
-        var isLoggedIn = <?php echo $isLoggedIn ? 'true' : 'false'; ?>;
-
-        if (isLoggedIn) {
-            if (selectedTime !== "Vyberte čas" && selectedService !== "Služba" && selectedCService !== "Preferovaná obsluha" && selectedDate !== "Datum") {
-                document.getElementById("selectedTime").value = selectedTime;
-                document.getElementById("selectedCService").value = selectedCService;
-                document.getElementById("selectedService").value = selectedService;
-                document.getElementById("selectedDate").value = selectedDate;
-                alert("Vaše rezervace byla úspěšná !");
-            } else {
-                alert("Prosím vyplňte všechna pole formuláře.");
-            }
-        } else {
-            alert("Pro provedení rezervace se prosím přihlaste.");
-        }
-    }
-</script>
-
 <?php
 session_start();
 $servername = "localhost";
@@ -36,25 +5,40 @@ $username = "root";
 $password = '';
 $dbname = "rezervace";
 
+if (!isset($_SESSION['user_email'])) {
+    $_SESSION['message'] = "Nejste přihlášen/a.";
+    header("Location: rezervace.php");
+    exit();
+} else {
+    $email = $_SESSION['user_email'];
+}
+
+$operatorName = $_POST['selectedCService'];
+$serviceName = $_POST['selectedService'];
+$serviceDate = $_POST['selectedDate'];
+$serviceTime = $_POST['selectedTime'];
+if (empty($operatorName) || empty($serviceName) || empty($serviceDate) || empty($serviceTime)) {
+    $_SESSION['message'] = "Prosím vyplňte všechna pole formuláře";
+    header("Location: rezervace.php");
+    exit();
+}
+
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } else {
-    $sqlUserId = "SELECT id FROM uzivatele WHERE email = '$user_email'";
+    $sqlUserId = "SELECT id FROM uzivatele WHERE Email = '$email'";
     $resultUserId = $conn->query($sqlUserId);
     $rowUserId = $resultUserId->fetch_assoc();
     $user_id = $rowUserId['id'];
 
-    $operatorName = $_POST['selectedCService'];
-    $serviceName = $_POST['selectedService'];
-    $serviceDate = $_POST['selectedDate'];
-    $serviceTime = $_POST['selectedTime'];
+
     $formattedDate = date('Y-m-d', strtotime($serviceDate));
 
     $sqlOperator = "SELECT id FROM operator WHERE jmeno = '$operatorName'";
     $resultOperator = $conn->query($sqlOperator);
 
-    $sqlService = "SELECT id FROM sluzba WHERE typ_sluzby = '$serviceName'";
+    $sqlService = "SELECT id, casSluzby FROM sluzba WHERE typ_sluzby = '$serviceName'";
     $resultService = $conn->query($sqlService);
 
     if ($resultOperator->num_rows > 0 && $resultService->num_rows > 0) {
@@ -63,18 +47,18 @@ if ($conn->connect_error) {
 
         $rowService = $resultService->fetch_assoc();
         $serviceId = $rowService['id'];
+        $serviceDuration = $rowService['casSluzby'];
 
-        $sqlInsert = "INSERT INTO reservations (uzivatel_id, operator_id, sluzba_id, cas_sluzby, datum_sluzby) 
-              VALUES ('$user_id', '$operatorId', '$serviceId', '$serviceTime', '$formattedDate')";
+        $sqlInsert = "INSERT INTO reservations (uzivatel_id, operator_id, sluzba_id, cas_sluzby, datum_sluzby, casSluzby) 
+              VALUES ('$user_id', '$operatorId', '$serviceId', '$serviceTime', '$formattedDate', '$serviceDuration')";
 
-        if ($conn->query($sqlInsert) === TRUE) {
+        if ($conn->query($sqlInsert)) {
+            $_SESSION['message'] = "Rezerváce úspešně odeslána.";
+            header("Location: index.php");
+            exit();
+        } else {
             header("Location: index.php");
             exit();
         }
-    } else {
-        header("Location: Rezervace.php");
-        exit();
-        echo "Operátor s jménem $operatorName nebyl nalezen nebo služba s názvem $serviceName nebyla nalezena.";
     }
 }
-?>

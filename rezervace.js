@@ -42,12 +42,11 @@ function toggleDate() {
 function selectDateService(item) {
     var menu = document.getElementById('menu4');
     menu.style.display = 'none';
-    var zvolenyItemService = document.getElementById('reservationDate');
+    var zvolenyItemService = document.getElementById('zvoleneDatum');
     zvolenyItemService.textContent = "Zvolené datum: " + item;
 }
 
 function submitForm() {
-
     var selectedTimeElement = document.getElementById("ZvolenyCas");
     var selectedCServiceElement = document.getElementById("ZvolenaObsluha");
     var selectedServiceElement = document.getElementById("ZvolenaSluzba");
@@ -63,10 +62,9 @@ function submitForm() {
         document.getElementById("selectedCService").value = selectedCService;
         document.getElementById("selectedService").value = selectedService;
         document.getElementById("selectedDate").value = selectedDate;
-        alert("Vaše rezervace byla úspěšná !");
-    } else {
-        alert("Prosím vyplňte všechna pole formuláře.");
-    }
+    } 
 }
+
+
 
 

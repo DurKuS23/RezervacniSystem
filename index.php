@@ -1,5 +1,12 @@
 <!DOCTYPE html>
 <html>
+<?php
+session_start();
+if (isset($_SESSION['message'])) {
+    echo "<script>alert('{$_SESSION['message']}');</script>";
+    unset($_SESSION['message']);
+}
+?>
 
 <head>
     <meta charset="utf-8">
@@ -20,41 +27,21 @@
         <div class="topnav" id="myTopnav">
             <a href="index.php">Úvodní stránka</a>
             <?php
-            session_start();
             if (!isset($_SESSION['user_email'])) {
                 echo '<a href="" onclick="Login()">Přihlášení</a>';
                 echo '<a href="" onclick="Register()">Registrace</a>';
+            } else {
+                echo '<a href="logout.php">Odhlásit se</a>';
             }
             ?>
-            <a href="spravcelogin.php"> Správce </a>
-            <a href="rezervace.php">Rezervace</a>
+            <a href="Rezervace.php">Rezervace</a>
+
             <a href="javascript:void(0);" class="icon" onclick="myFunction()">
                 <i class="fa fa-bars"></i> </a>
         </div>
     </div>
 
     <div class="background">
-
-        <?php
-
-        if (isset($_SESSION['user_email'])) {
-            $user_email = $_SESSION['user_email'];
-            echo '<div class="header">';
-            echo '<form method="post">';
-            echo '<button type="submit" name="logout">Odhlásit se</button>';
-            echo '</form>';
-            echo '</div>';
-        } else {
-        }
-
-        if (isset($_POST["logout"])) {
-            session_unset();
-            session_destroy();
-
-            header("Location: index.php");
-            exit();
-        }
-        ?>
         <div class="cont-1">
             <div class="headerH1">
                 <h1 class="txt"> Barber Shop</h1>
