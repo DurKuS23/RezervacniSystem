@@ -9,7 +9,7 @@ if ($conn->connect_error) {
     die("Připojení k databázi selhalo: " . $conn->connect_error);
 }
 
-$datum = $_GET['datum']??"";
+$datum = $_POST['datum']??"";
 $formattedDatum = date('Y-m-d', strtotime($datum));
 $sql = "SELECT jmeno FROM operator WHERE id IN (
     SELECT operator_id_1 FROM pracovnidata WHERE datum = '$formattedDatum'

@@ -29,7 +29,7 @@ if (isset($_SESSION['message'])) {
                     $("#zvoleneDatum").text("Datum: " + dateText);
                     $.ajax({
                         url: 'zamestnanci.php',
-                        method: 'GET',
+                        method: 'POST',
                         data: {
                             datum: selectedDate
                         },
