@@ -62,7 +62,7 @@ function submitForm() {
         document.getElementById("selectedCService").value = selectedCService;
         document.getElementById("selectedService").value = selectedService;
         document.getElementById("selectedDate").value = selectedDate;
-    } 
+    }
 }
 
 

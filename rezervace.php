@@ -47,6 +47,31 @@ if (isset($_SESSION['message'])) {
                             console.error(error);
                         }
                     });
+
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('GET', 'timegen.php?datum=' + selectedDate, true);
+
+                    xhr.onreadystatechange = function() {
+                        if (xhr.readyState === 4) {
+                            if (xhr.status === 200) {
+                                var times = JSON.parse(xhr.responseText);
+                                var liList = '';
+                                times.forEach(function(time) {
+                                    liList += '<li class="bold" onclick="selectItemTime(\'' + time + '\')"><a href="#">' + time + '</a></li>';
+                                });
+                                document.getElementById("timeList").innerHTML = liList;
+                            } else {
+                                console.error(xhr.statusText);
+                            }
+                        }
+                    };
+
+                    xhr.onerror = function() {
+                        console.error('Chyba při zpracování požadavku.');
+                    };
+
+                    xhr.send();
+
                     $("#menu4").hide();
                 },
                 beforeShowDay: function(date) {
@@ -148,48 +173,10 @@ if (isset($_SESSION['message'])) {
 
 
                 <br>
-
                 <div class="blok">
                     <div class="menu-btn" onclick="toggleMenuTime()" id="ZvolenyCas">Vyberte čas</div>
                     <div id="menu">
-                        <ul>
-                            <?php
-                            $servername = "localhost";
-                            $username = "root";
-                            $password = "";
-                            $dbname = "rezervace";
-
-                            $conn = new mysqli($servername, $username, $password, $dbname);
-
-                            if ($conn->connect_error) {
-                                die("Connection failed: " . $conn->connect_error);
-                            } else {
-                                $sql = "SELECT cas_otvirani, cas_zavirani FROM casrozpeti WHERE id = 1";
-
-                                $result = $conn->query($sql);
-
-                                if ($result->num_rows > 0) {
-                                    $row = $result->fetch_assoc();
-                                    $openingTime = $row["cas_otvirani"];
-                                    $closingTime = $row["cas_zavirani"];
-                                } else {
-                                    echo "0 results";
-                                }
-                            }
-
-                            $startTime = strtotime($openingTime);
-                            $endTime = strtotime($closingTime);
-
-                            $currentTime = $startTime;
-                            echo "<ul>";
-                            while ($currentTime <= $endTime) {
-                                echo '<li class="bold" onclick="selectItemTime(\'' . date('H:i', $currentTime) . '\')"><a href="#">' . date('H:i', $currentTime) . '</a></li>';
-                                $currentTime += 15 * 60;
-                            }
-                            echo "</ul>";
-
-                            $conn->close();
-                            ?>
+                        <ul id="timeList">
 
                         </ul>
                     </div>
