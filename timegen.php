@@ -9,7 +9,7 @@ $dbname = "rezervace";
 $conn = new mysqli($servename, $username, $password, $dbname);
 
 
-$selectedDate = $_GET['datum'] ?? "";
+$selectedDate = $_POST['datum'] ?? "";
 $formattedDatum = date('Y-m-d', strtotime($selectedDate));
 
 $sqlSelect = "SELECT datum_sluzby, cas_sluzby, casSluzby FROM reservations WHERE datum_sluzby = '$formattedDatum'";

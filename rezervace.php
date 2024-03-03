@@ -49,7 +49,7 @@ if (isset($_SESSION['message'])) {
                     });
 
                     var xhr = new XMLHttpRequest();
-                    xhr.open('GET', 'timegen.php?datum=' + selectedDate, true);
+                    xhr.open('POST', 'timegen.php?datum=' + selectedDate, true);
 
                     xhr.onreadystatechange = function() {
                         if (xhr.readyState === 4) {
