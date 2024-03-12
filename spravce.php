@@ -14,12 +14,8 @@ if (isset($_POST["logout"])) {
     exit();
 }
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "rezervace";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+require_once('dbconnect.php');
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -27,7 +23,7 @@ if ($conn->connect_error) {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_reservation'])) {
     $reservation_id = $_POST['reservation_id'];
-    
+
     $delete_query = "DELETE FROM reservations WHERE reservation_id = $reservation_id";
 
     if ($conn->query($delete_query) === TRUE) {

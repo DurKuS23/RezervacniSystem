@@ -1,9 +1,6 @@
 <?php
 session_start();
-$servername = "localhost";
-$username = "root";
-$password = '';
-$dbname = "rezervace";
+require_once('dbconnect.php');
 
 if (!isset($_SESSION['user_email'])) {
     $_SESSION['message'] = "Nejste přihlášen/a.";
@@ -23,10 +20,6 @@ if (empty($operatorName) || empty($serviceName) || empty($serviceDate) || empty(
     exit();
 }
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} else {
     $sqlUserId = "SELECT id FROM uzivatele WHERE Email = '$email'";
     $resultUserId = $conn->query($sqlUserId);
     $rowUserId = $resultUserId->fetch_assoc();
@@ -61,4 +54,3 @@ if ($conn->connect_error) {
             exit();
         }
     }
-}

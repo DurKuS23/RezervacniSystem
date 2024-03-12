@@ -13,15 +13,7 @@ if (isset($_POST['selectedDate'])) {
 
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["openingTime"]) && isset($_POST["closingTime"])) {
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "rezervace";
-
-    $conn = new mysqli($servername, $username, $password, $dbname);
-    if ($conn->connect_error) {
-        die("Chyba připojení k databázi: " . $conn->connect_error);
-    }
+    require_once('dbconnect.php');
 
     $openingTime = $_POST["openingTime"];
     $closingTime = $_POST["closingTime"];

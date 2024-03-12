@@ -1,15 +1,8 @@
 <?php
 session_start();
 
-$servername = "localhost";
-$username = "root";
-$password = '';
-$dbname = "rezervace";
 
-$conn = new mysqli($servername, $username, '', $dbname);
-if ($conn->connect_error) {
-    die("Chyba připojení k databázi: " . $conn->connect_error);
-}
+require_once('dbconnect.php');
 
 $Email = $_POST['email'];
 $Password = $_POST['heslo'];

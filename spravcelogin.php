@@ -1,16 +1,7 @@
 <?php
 session_start();
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "rezervace";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+require_once('dbconnect.php');
 
 if (isset($_SESSION["logged_in"]) && $_SESSION["logged_in"] === true) {
     header("Location: spravce.php");

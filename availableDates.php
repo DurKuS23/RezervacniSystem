@@ -1,10 +1,6 @@
 <?php 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "rezervace";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+require_once('dbconnect.php');
 
 $sql = "SELECT DISTINCT datum FROM pracovnidata";
 $result = $conn->query($sql);

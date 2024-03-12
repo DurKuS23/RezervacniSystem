@@ -69,16 +69,8 @@ if (isset($_POST["logout"])) {
             <div class="it1">
                 <div class="dateEdt">
                     <?php
-                    $servername = "localhost";
-                    $username = "root";
-                    $password = "";
-                    $dbname = "rezervace";
 
-                    $conn = new mysqli($servername, $username, $password, $dbname);
-
-                    if ($conn->connect_error) {
-                        die("Připojení k databázi selhalo: " . $conn->connect_error);
-                    }
+                    require_once('dbconnect.php');
 
                     $sql = "SELECT datum FROM pracovnidata";
                     $result = $conn->query($sql);
@@ -106,28 +98,22 @@ if (isset($_POST["logout"])) {
 
                     $firstWorkday = strtotime('next Monday', $startDate);
 
-                    // Smyčka pro generování kalendáře od prvního pracovního dne
                     for ($i = 0; $i < $daysToShow; $i++) {
                         $currentDate = strtotime("+$i day", $firstWorkday);
                         $formattedDate = date('d.m.', $currentDate);
                         $dayOfWeek = date('N', $currentDate);
 
-                        // Zobrazení jen pracovních dnů (pondělí až pátek)
                         if ($dayOfWeek < 6) {
-                            // Pokud je první den v týdnu, začněte nový řádek
                             if ($dayOfWeek == 1) {
                                 echo '<tr>';
                             }
 
                             echo '<td>';
-                            // Nastavení třídy tlačítka podle existence data
                             $buttonClass = in_array($formattedDate, $existingDates) ? 'buttonCalendar existingDate' : 'buttonCalendar';
                             echo '<button class="' . $buttonClass . '" type="button" onclick="saveDate(\'' . $formattedDate . '\')">';
                             echo $formattedDate;
                             echo '</button>';
                             echo '</td>';
-
-                            // Pokud je pátek, ukončete řádek
                             if ($dayOfWeek == 5) {
                                 echo '</tr>';
                             }
@@ -144,7 +130,7 @@ if (isset($_POST["logout"])) {
                     ?>
                 </div>
 
-                
+
             </div>
 
             <div class="it1">
@@ -154,16 +140,7 @@ if (isset($_POST["logout"])) {
                     <div id="result"></div>
                     <div id="selectedDateOperator" class="dbinfo"> Vyberte datum </div>
                     <?php
-                    $servername = "localhost";
-                    $username = "root";
-                    $password = "";
-                    $dbname = "rezervace";
-
-                    $conn = new mysqli($servername, $username, $password, $dbname);
-
-                    if ($conn->connect_error) {
-                        die("Připojení k databázi selhalo: " . $conn->connect_error);
-                    }
+                    require_once('dbconnect.php');
 
                     $sql = "SELECT id, jmeno FROM operator WHERE id <> 1";
                     $result = $conn->query($sql);
@@ -328,14 +305,7 @@ if (isset($_POST["logout"])) {
                     </script>
 
                     <?php
-                    $servername = "localhost";
-                    $username = "root";
-                    $password = "";
-                    $dbname = "rezervace";
-                    $conn = new mysqli($servername, $username, $password, $dbname);
-                    if ($conn->connect_error) {
-                        die("Chyba připojení k databázi: " . $conn->connect_error);
-                    }
+                    require_once('dbconnect.php');
                     $sql = "SELECT cas_otvirani, cas_zavirani FROM casrozpeti WHERE id=1";
                     $result = $conn->query($sql);
                     if ($result->num_rows > 0) {
