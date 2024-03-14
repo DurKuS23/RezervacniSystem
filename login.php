@@ -17,7 +17,7 @@ if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
     if (hash("sha256", $Password) == $row['Heslo']) {
         $Logged = 0;
-        $_SESSION['user_email'] = $Email; // Uložení e-mailu do relace
+        $_SESSION['user_email'] = $Email;
 
         echo "<script> alert('Úspěšně přihlášen') </script>";
     } else {
