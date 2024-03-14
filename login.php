@@ -31,8 +31,8 @@ if ($result->num_rows > 0) {
 
 switch ($Logged) {
     case 0: {
+        echo "<script> window.location.href = 'index.php'; </script>";
             echo "<script>window.opener.location.reload();</script>";
-            echo "<script>window.close();</script>";
         }
         break;
     case 1: {

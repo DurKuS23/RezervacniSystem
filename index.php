@@ -23,13 +23,14 @@ if (isset($_SESSION['message'])) {
 </head>
 
 <body>
+
     <div class="pozice">
         <div class="topnav" id="myTopnav">
             <a href="index.php">Úvodní stránka</a>
             <?php
             if (!isset($_SESSION['user_email'])) {
-                echo '<a href="" onclick="Login()">Přihlášení</a>';
-                echo '<a href="" onclick="Register()">Registrace</a>';
+                echo '<a href="login.html">Přihlášení</a>';
+                echo '<a href="register.html">Registrace</a>';
             } else {
                 echo '<a href="logout.php">Odhlásit se</a>';
             }
@@ -58,7 +59,7 @@ if (isset($_SESSION['message'])) {
     <div class="background2">
         <div class="cont-2">
             <div class="headerH2">
-                <h2 id="AboutUsContent"> O nás </h2>
+                <h2> O nás </h2>
                 <div class="lineblue"></div>
                 <div class="about-us">
                     <p> Barber Shop je pánské holičství. Kromě moderních střihů, nabízíme také úpravu vousů, mytí a barvení vlasů či pleťové masky
@@ -70,19 +71,20 @@ if (isset($_SESSION['message'])) {
         </div>
         <div class="slideshow-container">
             <div class="slides">
-                <img src="image/indexback.png" alt="Image 1">
-                <img src="image/backgroundImage3.jpg" alt="Image 2">
+                <img src="image/indexback.png" alt="Image1">
+                <img src="image/backgroundImage3.jpg" alt="Image2">
             </div>
 
             <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
             <a class="next" onclick="plusSlides(1)">&#10095;</a>
         </div>
+
     </div>
     <div class="background2">
 
         <div class="cont-3">
             <div class="headerH2">
-                <h2 id="priceMenu"> Ceník </h2>
+                <h2> Ceník </h2>
                 <div class="lineblue"></div>
             </div>
             <div class="groups">

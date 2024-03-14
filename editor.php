@@ -125,8 +125,6 @@ if (isset($_POST["logout"])) {
                     echo '</div>';
 
                     echo '<div id="selectedDateInfo" class="dbinfo"></div>';
-
-                    $conn->close();
                     ?>
                 </div>
 
@@ -157,7 +155,6 @@ if (isset($_POST["logout"])) {
                     }
                     echo "<select name='operator2' id='operator2' style='display:none;'></select>";
                     echo '</div>';
-                    $conn->close();
                     ?>
 
                     <button class="serviceBtn" type="submit" id="submitBtn">Potvrdit</button>
@@ -317,7 +314,6 @@ if (isset($_POST["logout"])) {
                     } else {
                         echo "Nebyly nalezeny žádné záznamy.";
                     }
-                    $conn->close();
                     ?>
                 </div>
             </div>

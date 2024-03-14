@@ -1,4 +1,3 @@
-
 <?php
 require_once('dbconnect.php');
 
@@ -18,6 +17,7 @@ function kontrolaNeprazdnychDat($data)
     }
     return true;
 }
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['odeslat'])) {
@@ -47,8 +47,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo '<script>alert("Úspěšně registrován !");</script>';
                 session_start();
                 $_SESSION['user_email'] = $Email;
+                echo "<script> window.location.href = 'index.php'; </script>";
                 echo "<script>window.opener.location.reload();</script>";
-                echo "<script>window.close();</script>";
             } else {
                 echo '<script>alert("Chyba: Některá pole jsou prázdná nebo obsahují pouze mezery.")</script>';
                 echo "<script> window.location.href = 'register.html'; </script>";

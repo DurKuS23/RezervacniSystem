@@ -94,8 +94,8 @@ if (isset($_SESSION['message'])) {
             <a href="index.php">Úvodní stránka</a>
             <?php
             if (!isset($_SESSION['user_email'])) {
-                echo '<a href="" onclick="Login()">Přihlášení</a>';
-                echo '<a href="" onclick="Register()">Registrace</a>';
+                echo '<a href="login.html">Přihlášení</a>';
+                echo '<a href="register.html">Registrace</a>';
             } else {
                 echo '<a href="logout.php">Odhlásit se</a>';
             }
@@ -155,7 +155,6 @@ if (isset($_SESSION['message'])) {
                             } else {
                                 echo "0 results";
                             }
-                            $conn->close();
                             ?>
                         </ul>
                     </div>
@@ -206,43 +205,11 @@ if (isset($_SESSION['message'])) {
             </div>
 
             <div class="right-s">
-
-                <div class="row-oph">
-                    <p class="bold"> Pondělí </p>
-                    <div>
-                        <p> 7:00 - 10:00 </p>
-                    </div>
-                </div>
-                <div class="row-oph">
-                    <p class="bold"> Útery </p>
-                    <div>
-                        <p> 7:00 - 10:00 </p>
-                    </div>
-                </div>
-                <div class="row-oph">
-                    <p class="bold"> Středa </p>
-                    <p> 7:00 - 10:00 </p>
-                </div>
-                <div class="row-oph">
-                    <p class="bold"> Čtvrtek </p>
-                    <p> 7:00 - 10:00 </p>
-                </div>
-                <div class="row-oph">
-                    <p class="bold"> Pátek </p>
-                    <p> 7:00 - 10:00 </p>
-                </div>
-                <div class="row-oph">
-                    <p class="bold"> Sobota </p>
-                    <p> zavřeno </p>
-                </div>
-                <div class="row-oph">
-                    <p class="bold"> Neděle </p>
-                    <p> zavřeno </p>
-                </div>
-
+                <?php include 'openClose.php'; ?>
             </div>
         </div>
     </div>
+
     <script src="rezervace.js"></script>
 
     <footer>

@@ -7,27 +7,52 @@
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <div class="home-page-con">
+        <a href="index.php" class="home-page fa fa-home"> Úvodní stránka </a>
+    </div>
     <div class="logo">
-            <img src="image/logo.png" class="left" alt="logo" onclick="closeWindow()">
+        <img src="image/logo.png" class="left" alt="logo" onclick="closeWindow()">
     </div>
     <div class="container1">
         <h1>Registrace</h1>
-        <form action="register.php" method="post">
+        <form action="register.php" method="post" onsubmit="return overitHeslo()">
             <input type="text" name="jmeno" placeholder="Jméno" required>
             <input type="text" name="prijmeni" placeholder="Příjmení" required>
             <input type="email" name="email" placeholder="Email" required>
-            <input type="password" name="heslo" placeholder="Heslo" required>
-            <button type="submit" name="odeslat" id="end">Registrovat</button>
+            <input type="password" name="heslo" id="heslo" placeholder="Heslo" required>
+            <button type="submit" name="odeslat" id="end"> Registrovat </button>
         </form>
     </div>
     <script>
         function closeWindow() {
             window.opener.location.href = 'index.php';
             window.close();
+        }
+
+        function overitHeslo() {
+            var heslo = document.getElementById("heslo").value;
+            if (heslo.length < 8) {
+                alert("Heslo musí mít alespoň 8 znaků.");
+                return false;
+            }
+            if (!/[A-Z]/.test(heslo)) {
+                alert("Heslo musí obsahovat alespoň jedno velké písmeno.");
+                return false;
+            }
+            if (!/[0-9]/.test(heslo)) {
+                alert("Heslo musí obsahovat alespoň jedno číslo.");
+                return false;
+            }
+            if (!/[$&+,:;=?@#|'<>.^*()%!-]/.test(heslo)) {
+                alert("Heslo musí obsahovat alespoň jeden speciální znak.");
+                return false;
+            }
+            return true;
         }
     </script>
 </body>

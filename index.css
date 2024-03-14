@@ -132,6 +132,10 @@ button:hover {
     .about-us {
         width: 600px;
     }
+
+    .slideshow-container {
+        display: none;
+    }
 }
 
 .logo {
@@ -171,7 +175,7 @@ button:hover {
     }
 
     .slideshow-container {
-        max-width: 200px;
+        max-width: 300px;
     }
 }
 
@@ -241,7 +245,7 @@ button:hover {
 }
 
 .it {
-    width: 400px;
+    width: 300px;
 }
 
 .group2 {
@@ -254,6 +258,7 @@ button:hover {
     display: flex;
     flex-direction: column;
     color: white;
+    padding: 10px;
 }
 
 @media screen and (max-width: 1350px) {
@@ -294,4 +299,13 @@ button:hover {
     background-attachment: fixed;
     background-position: top;
     height: fit-content;
+}
+
+@media screen and (max-height: 720px) {
+    .logo {
+        display: flex;
+        top: 8%;
+        max-width: 200px;
+        max-height: 150px;
+    }
 }

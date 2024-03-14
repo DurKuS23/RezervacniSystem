@@ -15,6 +15,4 @@ if ($stmt->execute()) {
 } else {
     echo "Chyba při aktualizaci záznamu: " . $conn->error;
 }
-
-$conn->close();
 ?>
