@@ -16,10 +16,7 @@ body {
     text-align: center;
     justify-content: center;
     color: white;
-
 }
-
-/* bloky */
 
 .bloky-all {
     padding-top: 10px;
@@ -50,7 +47,6 @@ body {
     display: block;
 }
 
-/* čas */
 .menu-btn {
     cursor: pointer;
     background-color: #333;
@@ -97,8 +93,6 @@ body {
 #menu ul li:hover {
     background-color: RGB(128, 128, 128);
 }
-
-/* vyber obsluhy */
 
 .menu2-btn {
     cursor: pointer;
@@ -147,8 +141,6 @@ body {
     background-color: RGB(128, 128, 128);
 }
 
-/* vyber sluzby */
-
 .menu3-btn {
     cursor: pointer;
     background-color: #333;
@@ -196,8 +188,6 @@ body {
 #menu3 ul li:hover {
     background-color: rgb(128, 128, 128);
 }
-
-/* Vyber data */
 
 .menu4-btn {
     cursor: pointer;
@@ -270,16 +260,45 @@ body {
 
     body {
         background-image: none;
-        background-color: white;
+        background-color: #121212;
     }
 
     .map {
-        max-width: 450px;
+        display: flex;
+        align-items: center;
+    }
+
+    .background {
+        max-width: 300px;
+        width: min-content;
+        background-color: #121212;
+    }
+}
+
+@media screen and (max-width: 625px) {
+    .map {
+        max-width: max-content;
+    }
+    .central-gap {
+        flex-direction: column;
+        grid-gap: 0rem;
+    }
+    body {
+        width: 600px;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .map {
+        max-width: max-content;
+        height: auto;
     }
 }
 
 .map {
     display: flex;
+    justify-content: center;
+    width: 100%;
 }
 
 .open-hours {
