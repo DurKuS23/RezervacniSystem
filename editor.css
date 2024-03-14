@@ -116,11 +116,11 @@ option {
 }
 
 
-
 .bolderService {
     font-weight: bold;
     color: white;
     font-size: x-large;
+    text-align: right;
 }
 
 .bolderService input {
@@ -140,7 +140,7 @@ option {
 }
 
 .row-buttons button {
-    width: 250px;
+    width: 300px;
     height: 50px;
 }
 
@@ -163,6 +163,7 @@ input {
 .calendar {
     width: 100%;
     border-collapse: collapse;
+    padding: 30px;
 }
 
 .calendar th,
@@ -222,7 +223,7 @@ input {
     justify-content: center;
     align-items: center;
     text-align: center;
-    grid-gap: 5rem;
+    grid-gap: 3rem;
 }
 
 .group1 {
@@ -257,7 +258,6 @@ input {
     display: flex;
     flex-direction: column;
     max-width: 100%;
-    height: 500px;
     color: white;
     justify-content: start;
     align-items: center;
@@ -268,11 +268,10 @@ input {
     display: flex;
     flex-direction: column;
     max-width: 100%;
-    height: 500px;
     color: white;
-    justify-content: start;
+    justify-content: center;
     align-items: center;
-    text-align: right;
+    text-align: center;
 }
 
 .timeEdt p {
@@ -280,7 +279,6 @@ input {
 }
 
 .serviceEdt {
-    height: 500px;
     display: flex;
     flex-direction: column;
     max-width: 100%;
@@ -292,15 +290,18 @@ input {
 
 
 @media screen and (max-width: 1200px) {
+    .groups {
+        grid-gap: 1rem;
+    }
+
     .group1 {
         flex-direction: column;
+        grid-gap: 1rem;
     }
 
     .group2 {
         flex-direction: column;
-        grid-gap: 0;
-        padding: 0;
-        margin: 0;
+        grid-gap: 1;
     }
 
     .timeEdt {
@@ -310,6 +311,10 @@ input {
 
     .gap {
         flex-direction: column;
+    }
+
+    .bolderService {
+        text-align: center;
     }
 }
 
@@ -335,10 +340,21 @@ input {
         padding: 40px;
     }
 
+    .row-form {
+        text-align: center;
+        flex-direction: column;
+    }
+
+    #timefForm {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+    }
 }
 
 .CServiceEdt {
-    height: 500px;
     display: flex;
     flex-direction: column;
     max-width: 100%;
@@ -350,8 +366,20 @@ input {
 
 .gap {
     display: flex;
-    flex-direction: row;
-    grid-gap: 3rem;
+    flex-direction: column;
+    grid-gap: 1rem;
+}
+
+.row-form {
+    text-align: center;
+}
+
+#timeForm {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
 }
 
 .disabled-option {

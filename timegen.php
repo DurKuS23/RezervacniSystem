@@ -3,7 +3,8 @@
 session_start(); 
 require_once("dbconnect.php");
 
-$selectedDate = $_POST['datum'] ?? "";
+
+$selectedDate = $_GET['datum'] ?? "";
 $formattedDatum = date('Y-m-d', strtotime($selectedDate));
 
 $sqlSelect = "SELECT datum_sluzby, cas_sluzby, casSluzby FROM reservations WHERE datum_sluzby = '$formattedDatum'";
@@ -18,8 +19,8 @@ if ($resultTime->num_rows > 0) {
     $closingTime = $row["cas_zavirani"];
 } 
 
-$ArrayWithSTime = array();
-$ArrayWithLTime = array();
+$ArrayWithSTime = array(); /* Pole s časy rezervací pro dané datum */
+$ArrayWithLTime = array(); /* Pole s časy jak dlouho dané rezervace budou trvat */
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         $cas_sluzby = $row["cas_sluzby"];

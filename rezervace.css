@@ -272,6 +272,10 @@ body {
         background-image: none;
         background-color: white;
     }
+
+    .map {
+        max-width: 450px;
+    }
 }
 
 .map {
@@ -360,12 +364,10 @@ footer {
 
 footer p {
     text-align: center;
-    padding-left: 10px;
 }
 
 footer a {
     float: right;
-    padding-right: 10px;
     color: white;
     font-weight: 200;
     font-style: normal;

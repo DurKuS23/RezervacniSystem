@@ -301,11 +301,20 @@ button:hover {
     height: fit-content;
 }
 
-@media screen and (max-height: 720px) {
+@media screen and (max-height: 750px) {
     .logo {
         display: flex;
         top: 8%;
         max-width: 200px;
-        max-height: 150px;
+        height: 150px;
+    }
+    .background {
+        height: 150vh;
+    }
+}
+
+@media screen and (max-height: 500px) {
+    .background {
+        height: 200vh;
     }
 }

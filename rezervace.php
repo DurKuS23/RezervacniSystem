@@ -213,9 +213,7 @@ if (isset($_SESSION['message'])) {
     <script src="rezervace.js"></script>
 
     <footer>
-        <p> @Daniel Nováček 2023
-            <a href="" onclick="spravce()">Správce</a>
-        </p>
+        <p> @Daniel Nováček 2023 <a href="spravcelogin.php">Správce </a></p>
     </footer>
 </body>
 

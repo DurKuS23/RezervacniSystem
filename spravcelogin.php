@@ -50,10 +50,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Přihlášení</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <div class="home-page-con">
+        <a href="index.php" class="home-page fa fa-home"> Úvodní stránka </a>
+    </div>
     <div class="logo">
         <img src="image/logo.png" alt="logo" onclick="closeWindow()">
     </div>

@@ -261,27 +261,33 @@ if (isset($_POST["logout"])) {
                     <h2> Nastavení otevíracího času </h2>
                     <div class="lineblue"></div>
                     <form id="timeForm" method="post" action="">
-                        <label for="openingTime">Otevírací čas:</label>
-                        <select id="openingTime" name="openingTime">
-                            <?php
-                            $start = strtotime('07:00');
-                            $end = strtotime('20:00');
-                            $step = 15 * 60;
-                            for ($time = $start; $time <= $end; $time += $step) {
-                                echo '<option value="' . date('H:i', $time) . '">' . date('H:i', $time) . '</option>';
-                            }
-                            ?>
-                        </select><br>
-                        <label for="closingTime">Zavírací čas:</label>
-                        <select id="closingTime" name="closingTime">
-                            <?php
-                            $start = strtotime('07:00');
-                            $end = strtotime('20:00');
-                            for ($time = $start; $time <= $end; $time += $step) {
-                                echo '<option value="' . date('H:i', $time) . '">' . date('H:i', $time) . '</option>';
-                            }
-                            ?>
-                        </select><br>
+                        <div class="row-form">
+                            <label for="openingTime">Otevírací čas:</label>
+                            <select id="openingTime" name="openingTime">
+                                <?php
+                                $start = strtotime('07:00');
+                                $end = strtotime('20:00');
+                                $step = 15 * 60;
+                                for ($time = $start; $time <= $end; $time += $step) {
+                                    echo '<option value="' . date('H:i', $time) . '">' . date('H:i', $time) . '</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
+                        <br>
+                        <div class="row-form">
+                            <label for="closingTime">Zavírací čas:</label>
+                            <select id="closingTime" name="closingTime">
+                                <?php
+                                $start = strtotime('07:00');
+                                $end = strtotime('20:00');
+                                for ($time = $start; $time <= $end; $time += $step) {
+                                    echo '<option value="' . date('H:i', $time) . '">' . date('H:i', $time) . '</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
+                        <br>
                         <button type="submit" class="timeBtn" name="saveChanges">Uložit změny</button>
                     </form>
 
