@@ -175,6 +175,7 @@ if (isset($_SESSION['message'])) {
     </div>
 
     </div>
+
     <div class="background">
         <div class="confirm">
             <form action="rezervace_zapis.php" method="post">
@@ -188,12 +189,11 @@ if (isset($_SESSION['message'])) {
     </div>
 
     <div class="map">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2605.732653578486!2d15.888706476887588!3d49.22459707486512!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470d423e5579f153%3A0x882e29f2a26985b8!2zU3TFmWVkbsOtIHByxa9teXNsb3bDoSDFoWtvbGEgVMWZZWLDrcSN!5e0!3m2!1scs!2scz!4v1699739297062!5m2!1scs!2scz" width="600px" height="400px" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe id="widthMap" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2605.732653578486!2d15.888706476887588!3d49.22459707486512!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470d423e5579f153%3A0x882e29f2a26985b8!2zU3TFmWVkbsOtIHByxa9teXNsb3bDoSDFoWtvbGEgVMWZZWLDrcSN!5e0!3m2!1scs!2scz!4v1699739297062!5m2!1scs!2scz" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
     <div class="background">
         <div class="central-gap">
             <div class="left-s">
-
                 <div class="column-oph">
                     <p class="bold"> SPŠT </p>
                     <p> Manž. Curieových 734 </p>

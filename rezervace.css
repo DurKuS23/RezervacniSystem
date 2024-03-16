@@ -15,6 +15,7 @@ body {
 .centerHeader {
     text-align: center;
     justify-content: center;
+    display: block;
     color: white;
 }
 
@@ -216,6 +217,24 @@ body {
     z-index: 1;
 }
 
+.central-gap {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    grid-gap: 4rem;
+}
+
+.left-s {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+}
+
+.right-s {
+    display: flex;
+    flex-direction: column;
+}
+
 @media screen and (max-width: 780px) {
     .bloky-1-2 {
         flex-direction: column;
@@ -265,26 +284,37 @@ body {
 
     .map {
         display: flex;
+        width: max-content;
+        justify-content: center;
+        text-align: center;
         align-items: center;
     }
 
+    #widthMap {
+        width: auto;
+        height: auto;
+    }
+
     .background {
-        max-width: 300px;
-        width: min-content;
+        width: 100%;
         background-color: #121212;
     }
+
+    .central-gap {
+        flex-direction: column;
+        grid-gap: 1rem;
+        width: 100%;
+    }
+}
+
+#widthMap {
+    width: 600px;
+    height: 400px;
 }
 
 @media screen and (max-width: 625px) {
     .map {
         max-width: max-content;
-    }
-    .central-gap {
-        flex-direction: column;
-        grid-gap: 0rem;
-    }
-    body {
-        width: 600px;
     }
 }
 
@@ -303,24 +333,6 @@ body {
 
 .open-hours {
     display: flex;
-}
-
-.central-gap {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    grid-gap: 4rem;
-}
-
-.left-s {
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-}
-
-.right-s {
-    display: flex;
-    flex-direction: column;
 }
 
 .row-oph {
@@ -362,8 +374,9 @@ footer {
 
 .confirm {
     display: flex;
-    margin-left: 149px;
-    margin-right: 148.29px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     padding-top: 20px;
     padding-bottom: 20px;
 }
@@ -394,12 +407,20 @@ footer a {
 }
 
 .background {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
     max-width: 600px;
-    width: 600px;
     background-color: #121212;
 }
 
-/* Kalendář */
+@media screen and (max-width: 1150px) {
+    .background {
+        width: 80%;
+    }
+}
+
+
 .calendar {
     max-width: 600px;
     margin: 20px auto;
