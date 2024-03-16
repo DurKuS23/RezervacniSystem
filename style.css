@@ -111,11 +111,16 @@ button:hover {
 }
 
 .home-page {
-    font-size: 26px;
-    font-style: none;
+    font-size: 22px;
+    text-decoration: none;
     right: 30px;
+    font-weight: bold;
     top: 10px;
     width: 100%;
+}
+
+.home-page a {
+    font-family: Arial, sans-serif;
 }
 
 @media screen and (max-width: 780px) {
