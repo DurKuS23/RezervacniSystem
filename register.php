@@ -7,7 +7,6 @@ $Email = $_POST['email'];
 $Password = $_POST['heslo'];
 $hashHesla = hash("sha256", $Password);
 
-
 function kontrolaNeprazdnychDat($data)
 {
     foreach ($data as $key => $value) {
@@ -18,10 +17,8 @@ function kontrolaNeprazdnychDat($data)
     return true;
 }
 
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['odeslat'])) {
-
         $query = "SELECT COUNT(*) FROM uzivatele WHERE Email = ?";
         $stmt = $conn->prepare($query);
         $stmt->bind_param("s", $Email);
@@ -42,8 +39,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             );
 
             if (kontrolaNeprazdnychDat($dataKUlozeni)) {
-                $sql = "INSERT INTO uzivatele (Jmeno,Prijmeni,Email,Heslo) VALUES ('$Name', '$Surname','$Email','$hashHesla')";
-                $conn->query($sql);
+                $sql = "INSERT INTO uzivatele (Jmeno,Prijmeni,Email,Heslo) VALUES (?,?,?,?)";
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param("ssss", $Name, $Surname, $Email, $hashHesla);
+                $stmt->execute();
+                $stmt->close();
+
                 echo '<script>alert("Úspěšně registrován !");</script>';
                 session_start();
                 $_SESSION['user_email'] = $Email;

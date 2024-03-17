@@ -12,6 +12,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $enteredEmail = $_POST["email"];
     $enteredPassword = $_POST["password"];
 
+    $enteredEmail = filter_var($enteredEmail, FILTER_SANITIZE_EMAIL);
+
     $stmt = $conn->prepare("SELECT email, password_hash FROM admins WHERE email = ?");
     $stmt->bind_param("s", $enteredEmail);
     $stmt->execute();
@@ -37,8 +39,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->close();
 }
 ?>
-
-
 
 
 <!DOCTYPE html>

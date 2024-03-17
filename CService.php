@@ -54,7 +54,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 $sql_update = "UPDATE pracovnidata SET operator_id_1 = '$operator1_id', operator_id_2 = '$operator2_id' WHERE datum = '$selectedDateFormatted'";
                 if ($conn->query($sql_update) === TRUE) {
-                    echo "<p class='dbinfo'>Data byla úspěšně aktualizována v databázi.</p>";
+                    $response = array("status" => "success", "message" => "Data byla úspěšně aktualizována.");
+                    echo json_encode($response);
                 } else {
                     echo "Chyba při aktualizaci dat: " . $conn->error;
                 }
@@ -66,7 +67,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 $sql_insert = "INSERT INTO pracovnidata (datum, operator_id_1, operator_id_2) VALUES ('$selectedDateFormatted', '$operator1_id', '$operator2_id')";
                 if ($conn->query($sql_insert) === TRUE) {
-                    echo "<p class='dbinfo'>Data byla úspěšně uložena do databáze.</p>";
+                    $response = array("status" => "success", "message" => "Data byla úspěšně uložena.");
+                    echo json_encode($response);
                 } else {
                     echo "Chyba při zápisu dat do databáze: " . $conn->error;
                 }

@@ -178,9 +178,9 @@ if (isset($_POST["logout"])) {
                                     submitBtn: true
                                 },
                                 success: function(response) {
-                                    if (response === "success") {
-                                        alert("Data byla úspěšně uložena do databáze.");
-                                        $(".buttonCalendar").addClass("updatedButtonColor");
+                                    if (response.trim() === "success") {
+                                        alert("Pro datum " + selectedDate + " byli zvoleni operátoři: " + operator1 + " a " + operator2);
+                                        location.reload();
                                     }
                                 }
                             });
@@ -327,16 +327,7 @@ if (isset($_POST["logout"])) {
             <div class="it1">
                 <div class="serviceEdt">
                     <?php
-                    $servername = "localhost";
-                    $username = "root";
-                    $password = "";
-                    $dbname = "rezervace";
-
-                    $conn = new mysqli($servername, $username, $password, $dbname);
-
-                    if ($conn->connect_error) {
-                        die("Connection failed: " . $conn->connect_error);
-                    }
+                    require_once("dbconnect.php");
 
                     function clamp($value, $min, $max)
                     {

@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["openingTime"]) && isse
         $sql = "UPDATE casrozpeti SET cas_otvirani='$openingTime', cas_zavirani='$closingTime' WHERE id=1";
 
         if ($conn->query($sql) === TRUE) {
-            echo "<p class='dbinfo'> Aktuální nastavený čas v databázi: Otevírací čas -  $openingTime, Zavírací čas - $closingTime </p>";
+            echo "<p id='timeInfo'> Aktuální nastavený čas v databázi: Otevírací čas -  $openingTime, Zavírací čas - $closingTime </p>";
         } else {
             echo "Chyba při aktualizaci dat: " . $conn->error;
         }
