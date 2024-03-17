@@ -24,12 +24,12 @@ if (isset($_POST["logout"])) {
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="navbar.css">
-    <link rel="stylesheet" href="editor.css">
-    <link rel="stylesheet" href="spravce.css">
+    <link rel="stylesheet" href="styles/navbar.css">
+    <link rel="stylesheet" href="styles/editor.css">
+    <link rel="stylesheet" href="styles/spravce.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="javascript.js"></script>
-    <script src="spravce.js"></script>
+    <script src="scripts/javascript.js"></script>
+    <script src="scripts/spravce.js"></script>
 </head>
 
 <body>
@@ -42,9 +42,9 @@ if (isset($_POST["logout"])) {
                 echo '<a href="" onclick="Register()">Registrace</a>';
             }
             ?>
-            <a href="Rezervace.php">Rezervace</a>
-            <a href="Editor.php">Editor</a>
-            <a href="Spravce.php">Správce</a>
+            <a href="rezervace.php">Rezervace</a>
+            <a href="editor.php">Editor</a>
+            <a href="spravce.php">Správce</a>
 
             <a href="javascript:void(0);" class="icon" onclick="myFunction()">
                 <i class="fa fa-bars"></i> </a>
@@ -70,7 +70,7 @@ if (isset($_POST["logout"])) {
                 <div class="dateEdt">
                     <?php
 
-                    require_once('dbconnect.php');
+                    require_once('scripts/dbconnect.php');
 
                     $sql = "SELECT datum FROM pracovnidata";
                     $result = $conn->query($sql);
@@ -138,7 +138,7 @@ if (isset($_POST["logout"])) {
                     <div id="result"></div>
                     <div id="selectedDateOperator" class="dbinfo"> Vyberte datum </div>
                     <?php
-                    require_once('dbconnect.php');
+                    require_once('scripts/dbconnect.php');
 
                     $sql = "SELECT id, jmeno FROM operator WHERE id <> 1";
                     $result = $conn->query($sql);
@@ -170,7 +170,7 @@ if (isset($_POST["logout"])) {
 
                             $.ajax({
                                 type: "POST",
-                                url: "CService.php",
+                                url: "scripts/CService.php",
                                 data: {
                                     selectedDate: selectedDate,
                                     operator1: operator1,
@@ -198,7 +198,7 @@ if (isset($_POST["logout"])) {
                                 operator2Select.style.display = "block";
                             }
                         };
-                        xhr.open("GET", "CService.php?selectedOperator=" + operator1Value, true);
+                        xhr.open("GET", "scripts/CService.php?selectedOperator=" + operator1Value, true)
                         xhr.send();
                     });
 
@@ -226,7 +226,7 @@ if (isset($_POST["logout"])) {
                             operator1: operator1,
                             operator2: operator2
                         };
-                        fetch('CService.php', {
+                        fetch('scripts/CService.php', {
                                 method: 'POST',
                                 headers: {
                                     'Content-Type': 'application/json',
@@ -301,14 +301,14 @@ if (isset($_POST["logout"])) {
                                     document.getElementById("timeInfo").innerHTML = this.responseText;
                                 }
                             };
-                            xhttp.open("POST", "ajax_script.php", true);
+                            xhttp.open("POST", "scripts/ajax_script.php", true);
                             xhttp.send();
                         }
                         updateTime();
                     </script>
 
                     <?php
-                    require_once('dbconnect.php');
+                    require_once('scripts/dbconnect.php');
                     $sql = "SELECT cas_otvirani, cas_zavirani FROM casrozpeti WHERE id=1";
                     $result = $conn->query($sql);
                     if ($result->num_rows > 0) {
@@ -327,7 +327,7 @@ if (isset($_POST["logout"])) {
             <div class="it1">
                 <div class="serviceEdt">
                     <?php
-                    require_once("dbconnect.php");
+                    require_once("scripts/dbconnect.php");
 
                     function clamp($value, $min, $max)
                     {
@@ -399,7 +399,7 @@ if (isset($_POST["logout"])) {
                             var cena = document.getElementById('cena').value;
 
                             var xhr = new XMLHttpRequest();
-                            xhr.open("POST", "update_service.php", true);
+                            xhr.open("POST", "scripts/update_service.php", true);
                             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
                             xhr.onreadystatechange = function() {
                                 if (xhr.readyState == 4 && xhr.status == 200) {
@@ -411,7 +411,7 @@ if (isset($_POST["logout"])) {
 
                         function loadService(currentRow) {
                             var xhr = new XMLHttpRequest();
-                            xhr.open("POST", "load_service.php", true);
+                            xhr.open("POST", "scripts/load_service.php", true);
                             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
                             xhr.onreadystatechange = function() {
                                 if (xhr.readyState == 4 && xhr.status == 200) {

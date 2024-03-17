@@ -6,7 +6,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-image: url(image/backgroundImage.jpg);
+    background-image: url(../image/backgroundImage.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;

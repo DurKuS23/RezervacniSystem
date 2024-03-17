@@ -1,6 +1,6 @@
 function loadReservations() {
     var xhr = new XMLHttpRequest();
-    var url = "spravce.php";
+    var url = "scripts/spravce.php";
     xhr.open("POST", url, true);
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
@@ -24,8 +24,8 @@ window.onload = loadReservations;
 function showConfirmation() {
     var response = confirm("Opravdu chcete smazat rezervaci ?");
     if (response == true) {
-        window.location.href = "spravce.php?response=ano";
+        window.location.href = "../spravce.php?response=ano";
     } else {
-        window.location.href = "spravce.php?response=ne";
+        window.location.href = "../spravce.php?response=ne";
     }
 }

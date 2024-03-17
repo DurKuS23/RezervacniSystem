@@ -286,7 +286,7 @@ button:hover {
 }
 
 .background {
-    background-image: url(image/backgroundImage.jpg);
+    background-image: url(../image/backgroundImage.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;

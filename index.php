@@ -14,12 +14,11 @@ if (isset($_SESSION['message'])) {
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="navbar.css">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="styles/navbar.css">
+    <link rel="stylesheet" href="styles/index.css">
     <script src="/jquery-ui.css"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="indexscript.js"></script>
-    <script src="javascript.js"></script>
+    <script src="scripts/javascript.js"></script>
 </head>
 
 <body>
@@ -32,10 +31,10 @@ if (isset($_SESSION['message'])) {
                 echo '<a href="login.html">Přihlášení</a>';
                 echo '<a href="register.html">Registrace</a>';
             } else {
-                echo '<a href="logout.php">Odhlásit se</a>';
+                echo '<a href="scripts/logout.php">Odhlásit se</a>';
             }
             ?>
-            <a href="Rezervace.php">Rezervace</a>
+            <a href="rezervace.php">Rezervace</a>
 
             <a href="javascript:void(0);" class="icon" onclick="myFunction()">
                 <i class="fa fa-bars"></i> </a>

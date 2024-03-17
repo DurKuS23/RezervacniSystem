@@ -4,7 +4,7 @@ require_once('dbconnect.php');
 
 if (!isset($_SESSION['user_email'])) {
     $_SESSION['message'] = "Nejste přihlášen/a.";
-    header("Location: rezervace.php");
+    header("Location: ../rezervace.php");
     exit();
 } else {
     $email = $_SESSION['user_email'];
@@ -16,7 +16,7 @@ $serviceDate = $_POST['selectedDate'];
 $serviceTime = $_POST['selectedTime'];
 if (empty($operatorName) || empty($serviceName) || empty($serviceDate) || empty($serviceTime)) {
     $_SESSION['message'] = "Prosím vyplňte všechna pole formuláře";
-    header("Location: rezervace.php");
+    header("Location: ../rezervace.php");
     exit();
 }
 
@@ -50,7 +50,7 @@ if ($resultOperator->num_rows > 0 && $resultService->num_rows > 0) {
         $email = true;
         $_SESSION['message'] = "Rezerváce úspešně odeslána.";
     } else {
-        header("Location: index.php");
+        header("Location: ../index.php");
         exit();
     }
 }
@@ -106,6 +106,6 @@ $mail->send();
 echo "
 <script> 
 alert('Podrobnosti naleznete v emailu');
-document.location.href='index.php';
+document.location.href='../index.php';
 </script>
 ";

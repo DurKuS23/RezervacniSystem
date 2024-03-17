@@ -15,7 +15,7 @@ if (isset($_POST["logout"])) {
 }
 
 
-require_once('dbconnect.php');
+require_once('scripts/dbconnect.php');
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -51,10 +51,10 @@ $result = $conn->query($query);
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="navbar.css">
-    <link rel="stylesheet" href="spravce.css">
-    <script src="javascript.js"></script>
-    <script src="spravce.js"></script>
+    <link rel="stylesheet" href="styles/navbar.css">
+    <link rel="stylesheet" href="styles/spravce.css">
+    <script src="scripts/javascript.js"></script>
+    <script src="scripts/spravce.js"></script>
 </head>
 
 <body>
@@ -67,9 +67,9 @@ $result = $conn->query($query);
                 echo '<a href="" onclick="Register()">Registrace</a>';
             }
             ?>
-            <a href="Rezervace.php">Rezervace</a>
-            <a href="Editor.php">Editor</a>
-            <a href="Spravce.php">Správce</a>
+            <a href="rezervace.php">Rezervace</a>
+            <a href="editor.php">Editor</a>
+            <a href="spravce.php">Správce</a>
 
             <a href="javascript:void(0);" class="icon" onclick="myFunction()">
                 <i class="fa fa-bars"></i> </a>

@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require_once('dbconnect.php');
+require_once('scripts/dbconnect.php');
 
 $Email = $_POST['email'];
 $Password = $_POST['heslo'];

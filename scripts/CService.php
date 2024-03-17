@@ -31,17 +31,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "<p class='dbinfo'>Vyber zaměstnance pro toto datum: $selectedDateFormatted</p>";
     if (isset($_POST['submitBtn'])) {
 
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "rezervace";
-
-        $conn = new mysqli($servername, $username, $password, $dbname);
-
-        if ($conn->connect_error) {
-            die("Připojení k databázi selhalo: " . $conn->connect_error);
-        }
-
         $sql_count = "SELECT COUNT(*) AS count FROM pracovnidata WHERE datum = '$selectedDateFormatted'";
         $result_count = $conn->query($sql_count);
         $row_count = $result_count->fetch_assoc();

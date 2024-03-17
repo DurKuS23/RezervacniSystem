@@ -7,50 +7,6 @@ function myFunction() {
     }
 }
 
-function Register() {
-    var width = 540;
-    var height = 450;
-    var left = (window.innerWidth - width) / 2;
-    var top = (window.innerHeight - height) / 2;
-    var options = 'width=' + width + ',height=' + height + ',left=' + left + ',top=' + top;
-
-    var newWindow = window.open('register.html', 'centeredWindow', options);
-
-
-    var closeButton = document.getElementById('end');
-
-    closeButton.addEventListener('click', function () {
-        newWindow.close();
-    });
-    newWindow.document.body.appendChild(closeButton);
-}
-
-function Login() {
-    var width = 540;
-    var height = 450;
-    var left = (window.innerWidth - width) / 2;
-    var top = (window.innerHeight - height) / 2;
-    var options = 'width=' + width + ',height=' + height + ',left=' + left + ',top=' + top;
-
-    var newWindow = window.open('login.html', 'centeredWindow', options);
-}
-
-function closeWindow() {
-    window.opener.closeWindow();
-    window.close();
-}
-
-
-function spravce() {
-    var width = 540;
-    var height = 450;
-    var left = (window.innerWidth - width) / 2;
-    var top = (window.innerHeight - height) / 2;
-    var options = 'width=' + width + ',height=' + height + ',left=' + left + ',top=' + top;
-
-    var newWindow = window.open('spravcelogin.php', 'centeredWindow', options);
-}
-
 function generateTimeArray() {
     var openingTime = document.getElementById("openingTime").value;
     var closingTime = document.getElementById("closingTime").value;
@@ -84,7 +40,7 @@ function saveDate(selectedDate) {
             document.getElementById("selectedDateInfo").innerHTML = this.responseText;
         }
     };
-    xhttp.open("POST", "ajax_script.php", true);
+    xhttp.open("POST", "scripts/ajax_script.php", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send("selectedDate=" + selectedDate);
 
@@ -94,7 +50,7 @@ function saveDate(selectedDate) {
             document.getElementById("selectedDateOperator").innerHTML = this.responseText;
         }
     };
-    xhttp2.open("POST", "CService.php", true);
+    xhttp2.open("POST", "scripts/CService.php", true);
     xhttp2.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp2.send("selectedDate=" + selectedDate);
 }
@@ -106,7 +62,7 @@ function sendFormData() {
     var closingTime = document.getElementById("closingTime").value;
 
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "ajax_script.php", true);
+    xhr.open("POST", "scripts/ajax_script.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
     xhr.onload = function () {

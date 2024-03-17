@@ -1,5 +1,5 @@
 <?php
-require_once('dbconnect.php');
+require_once('scripts/dbconnect.php');
 
 $Name = $_POST['jmeno'];
 $Surname = $_POST['prijmeni'];

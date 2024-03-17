@@ -12,10 +12,10 @@ if (isset($_SESSION['message'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="rezervace.css">
-    <link rel="stylesheet" href="navbar.css">
-    <script src="rezervace.js"></script>
-    <script src="javascript.js"></script>
+    <link rel="stylesheet" href="styles/rezervace.css">
+    <link rel="stylesheet" href="styles/navbar.css">
+    <script src="scripst/rezervace.js"></script>
+    <script src="scripts/javascript.js"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
@@ -28,7 +28,7 @@ if (isset($_SESSION['message'])) {
                     var selectedDate = dateText;
                     $("#zvoleneDatum").text("Datum: " + dateText);
                     $.ajax({
-                        url: 'zamestnanci.php',
+                        url: 'scripts/zamestnanci.php',
                         method: 'POST',
                         data: {
                             datum: selectedDate
@@ -49,7 +49,7 @@ if (isset($_SESSION['message'])) {
                     });
 
                     var xhr = new XMLHttpRequest();
-                    xhr.open('POST', 'timegen.php?datum=' + selectedDate, true);
+                    xhr.open('POST', 'scripts/timegen.php?datum=' + selectedDate, true);
 
                     xhr.onreadystatechange = function() {
                         if (xhr.readyState === 4) {
@@ -97,10 +97,10 @@ if (isset($_SESSION['message'])) {
                 echo '<a href="login.html">Přihlášení</a>';
                 echo '<a href="register.html">Registrace</a>';
             } else {
-                echo '<a href="logout.php">Odhlásit se</a>';
+                echo '<a href="scripts/logout.php">Odhlásit se</a>';
             }
             ?>
-            <a href="Rezervace.php">Rezervace</a>
+            <a href="rezervace.php">Rezervace</a>
 
             <a href="javascript:void(0);" class="icon" onclick="myFunction()">
                 <i class="fa fa-bars"></i> </a>
@@ -138,7 +138,7 @@ if (isset($_SESSION['message'])) {
                     <div id="menu3">
                         <ul>
                             <?php
-                            require_once('dbconnect.php');
+                            require_once('scripts/dbconnect.php');
                             $sql = "SELECT typ_sluzby, casSluzby, cena FROM sluzba";
                             $result = $conn->query($sql);
 
@@ -178,7 +178,7 @@ if (isset($_SESSION['message'])) {
 
     <div class="background">
         <div class="confirm">
-            <form action="rezervace_zapis.php" method="post">
+            <form action="scripts/rezervace_zapis.php" method="post">
                 <input type="hidden" name="selectedTime" id="selectedTime" value="">
                 <input type="hidden" name="selectedService" id="selectedService" value="">
                 <input type="hidden" name="selectedCService" id="selectedCService" value="">
@@ -204,12 +204,12 @@ if (isset($_SESSION['message'])) {
             </div>
 
             <div class="right-s">
-                <?php include 'openClose.php'; ?>
+                <?php include 'scripts/openClose.php'; ?>
             </div>
         </div>
     </div>
 
-    <script src="rezervace.js"></script>
+    <script src="scripts/rezervace.js"></script>
 
     <footer>
         <p> @Daniel Nováček 2023 <a href="spravcelogin.php">Správce </a></p>

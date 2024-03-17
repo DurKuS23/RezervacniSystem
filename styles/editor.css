@@ -313,7 +313,7 @@ input {
         flex-direction: column;
     }
 
-    .bolderService {
+    .bolderService text {
         text-align: center;
     }
 }
