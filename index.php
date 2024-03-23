@@ -16,7 +16,6 @@ if (isset($_SESSION['message'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="styles/navbar.css">
     <link rel="stylesheet" href="styles/index.css">
-    <script src="/jquery-ui.css"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="scripts/javascript.js"></script>
 </head>
@@ -129,7 +128,7 @@ if (isset($_SESSION['message'])) {
     <footer>
         <p> @Daniel Nováček 2023 <a href="spravcelogin.php">Správce </a></p>
     </footer>
-    <script src="script.js"></script>
+    <script src="scripts/script.js"></script>
 </body>
 
 </html>

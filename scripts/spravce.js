@@ -1,3 +1,16 @@
+
+function showConfirmation(reservationId) {
+    var response = confirm("Opravdu chcete smazat rezervaci?");
+    if (response == true) {
+        window.location.href = "spravce.php?delete_reservation=true&reservation_id=" + reservationId;
+    }
+}
+
+function editReservation(reservationId) {
+    console.log("Editace rezervace pro ID: " + reservationId);
+    window.location.href = "editace_rezervace.php?id=" + reservationId;
+}
+
 function loadReservations() {
     var xhr = new XMLHttpRequest();
     var url = "scripts/spravce.php";
@@ -20,12 +33,3 @@ function loadReservations() {
     xhr.send();
 }
 window.onload = loadReservations;
-
-function showConfirmation() {
-    var response = confirm("Opravdu chcete smazat rezervaci ?");
-    if (response == true) {
-        window.location.href = "../spravce.php?response=ano";
-    } else {
-        window.location.href = "../spravce.php?response=ne";
-    }
-}

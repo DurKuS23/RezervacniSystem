@@ -33,10 +33,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_reservation']))
     }
 }
 
-$query = "SELECT r.reservation_id, o.jmeno AS operator_jmeno, r.datum_sluzby, r.cas_sluzby, s.typ_sluzby
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_reservation'])) {
+    $reservation_id = $_POST['reservation_id'];
+    echo "<script>
+            var response = confirm('Opravdu chcete smazat rezervaci?');
+            if (response == true) {
+                window.location.href = 'spravce.php?delete_reservation=true&reservation_id=" . $reservation_id . "';
+            }
+          </script>";
+}
+
+if (isset($_GET['delete_reservation']) && $_GET['delete_reservation'] === 'true' && isset($_GET['reservation_id'])) {
+    $delete_reservation_id = $_GET['reservation_id'];
+
+    $delete_query = "DELETE FROM reservations WHERE reservation_id = $delete_reservation_id";
+
+    if ($conn->query($delete_query) === TRUE) {
+        echo "<script> alert('Rezervace s ID $delete_reservation_id byla úspěšně smazána.') </script>";
+    } else {
+        echo "Chyba při mazání rezervace: " . $conn->error;
+    }
+
+    header("Location: spravce.php");
+    exit();
+}
+
+$query = "SELECT r.reservation_id, o.jmeno AS operator_jmeno, r.datum_sluzby, r.cas_sluzby, s.typ_sluzby, u.Jmeno, u.Prijmeni, u.Email
           FROM reservations r
           LEFT JOIN operator o ON r.operator_id = o.id
-          LEFT JOIN sluzba s ON r.sluzba_id = s.id";
+          LEFT JOIN sluzba s ON r.sluzba_id = s.id
+          LEFT JOIN uzivatele u ON r.uzivatel_id = u.id";
 
 $result = $conn->query($query);
 ?>
@@ -58,6 +84,7 @@ $result = $conn->query($query);
 </head>
 
 <body>
+
     <div class="pozice">
         <div class="topnav" id="myTopnav">
             <a href="index.php">Úvodní stránka</a>
@@ -97,14 +124,20 @@ $result = $conn->query($query);
                 echo "<div class='cont-buttons'>";
                 echo "<form method='post'>";
                 echo "<input type='hidden' name='reservation_id' value='" . $row["reservation_id"] . "'>";
-                echo "<button type='submit' class='delete_reservation' name='delete_reservation'>Smazat</button>";
+                echo "<button type='button' class='delete_reservation' onclick='showConfirmation(" . $row["reservation_id"] . ")'>Smazat</button>";
                 echo "</form>";
+                echo "<button onclick=\"editReservation(" . $row['reservation_id'] . ")\">Upravit</button>";
                 echo "</div>";
                 echo "<p class='bold-text'>Reservation ID: " . $row["reservation_id"] . "</p>";
                 echo "<p>Obsluha: " . $row["operator_jmeno"] . "</p>";
                 echo "<p>Datum: " . $row["datum_sluzby"] . "</p>";
                 echo "<p>Čas: " . $row["cas_sluzby"] . "</p>";
                 echo "<p>Služba: " . $row["typ_sluzby"] . "</p>";
+                echo "<br>";
+                echo "<p style='font-weight: bold;'> Údaje o uživateli </p>";
+                echo "<p>Jméno: " . $row["Jmeno"] . "</p>";
+                echo "<p >Příjmení: " . $row["Prijmeni"] . "</p>";
+                echo "<p>Email: " . $row["Email"] . "</p>";
                 echo "</div>";
                 $counter++;
             }
